@@ -21,3 +21,13 @@ let res2 = students.map((studentObj)=>{
     return studentObj;
 })
 console.log(res2);
+
+
+//  find the sum of ages of all the students 
+let res3 = students.reduce((accumulator,studentObj)=>accumulator.age+studentObj.age);
+console.log(res3);
+
+let res4 = students.reduce((accumulator,studentObj)=>{
+    return accumulator.age+studentObj.age;
+});
+console.log(res4);
