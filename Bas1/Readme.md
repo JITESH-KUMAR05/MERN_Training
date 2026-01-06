@@ -74,3 +74,47 @@ B. Non Numeric
 
 
 
+## object operations
+
+* first understand mulatable and immutable
+    * ## immutable
+    * let a = 10; // immutable as when we update the value of a a new memory is allocated and the variable a points to the new memory location
+    * so we have a point that all primitive data types are immutable in javascript. which means they cannot be modified once they are created.
+    * code example:
+        ```javascript
+        let a = 10;
+        a = a + 1;
+        a = a * 10;
+        // first a points to memory location of 10
+        // then a points to memory location of 11
+        // then a points to memory location of 110
+        console.log(a); // 110
+        ```
+    
+    * ## mutable
+    * All reference data types are mutable in javascript.
+    * 
+
+
+## packing of objects in javascript
+* Destructuring of objects in javascript
+* example code:
+```javascript
+let person = {
+    name: "John",
+    age: 30,
+    city: "New York"
+};
+// here the variable names should be same as the key names in the object
+// otherwise it will give undefined
+
+let {name, age, city} = person;
+console.log(name); // John
+console.log(age); // 30
+console.log(city); // New York
+
+// if we want only name and city
+let {name, city} = person;
+console.log(name); // John
+console.log(city); // New York
+```
