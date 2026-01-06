@@ -16,7 +16,11 @@ console.log(res1);
 // increment age by 2 years for manoj
 let res2 = students.map((studentObj)=>{
     if(studentObj.name==='manoj'){
-        studentObj.age += 2;
+        return {
+            sno:studentObj.sno,
+            name:studentObj.name,
+            age:studentObj.age+2
+        }
     }
     return studentObj;
 })
@@ -24,10 +28,10 @@ console.log(res2);
 
 
 //  find the sum of ages of all the students 
-let res3 = students.reduce((accumulator,studentObj)=>accumulator.age+studentObj.age);
+console.log(students);
+let res3 = students.reduce((accumulator,studentObj)=>accumulator+studentObj.age,0);
 console.log(res3);
-
 let res4 = students.reduce((accumulator,studentObj)=>{
-    return accumulator.age+studentObj.age;
-});
+    return accumulator+studentObj.age;
+},0);
 console.log(res4);
