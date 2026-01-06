@@ -118,3 +118,18 @@ let {name, city} = person;
 console.log(name); // John
 console.log(city); // New York
 ```
+
+
+## Callback function in javascript
+* A callback function is a function that is passed as an argument to another function and is executed after some operation has been completed.
+* example code:
+```javascript
+function test1(a){
+    console.log(a); // this will give anonymous function
+    console.log(a()); // this will execute the anonymous function and give 123
+
+}
+test1(function(){
+    return 123;
+});
+```
