@@ -48,7 +48,8 @@ B. Non Numeric
     * ordered collection of data
     * indexed collection of data
     * we can store heterogeneous data in array in javascript but preferably we should store homogeneous data
-    * index starts from 0 but why ? --> because its easier to calculate the offset from the base address. --> offset = index * size of each element
+    * index starts from 0 but why ? --> because its easier to calculate the offset from
+      the base address. --> offset = index *  size of each element
 
 * Object -->
     * unordered collection of data
@@ -73,6 +74,3 @@ B. Non Numeric
 
 
 
-
-
-rajesh thappeta
