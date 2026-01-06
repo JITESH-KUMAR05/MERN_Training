@@ -11,8 +11,9 @@ let empObject = {
 console.log("object properties");
 console.log(empObject.empNo);
 console.log(empObject.name);
-console.log(empObject.age)
-console.log(empObject.city) // leads to undefined as it doesn't exist
+console.log(empObject.age);
+console.log(empObject.city); // leads to undefined as it doesn't exist
+// console.log(empObject[name]); --> this will lead to error
 
 console.log("object properties data types");
 console.log(typeof empObject.empNo);
