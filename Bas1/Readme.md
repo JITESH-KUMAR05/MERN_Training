@@ -133,3 +133,6 @@ test1(function(){
     return 123;
 });
 ```
+
+# name of func,how many params,what does it return
+* this is very important for understanding any function
