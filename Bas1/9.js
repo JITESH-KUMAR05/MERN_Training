@@ -17,5 +17,7 @@ function hello1(){
 
 
 function hello2(){
-    
+
 }
+
+// need is hello2 should be called after hello1
