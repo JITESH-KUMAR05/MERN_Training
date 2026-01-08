@@ -69,7 +69,7 @@ else{
     enrollMessage = "Complete Requirements";
 }
 //    3. Use ternary operator
-let res = ((hasPaid) && (enrollMessage)) ? "Enroll Now" : "Complete Requirements";
+let res = ((hasPaid) && (hasCompletedBasics)) ? "Enroll Now" : "Complete Requirements";
 //    4. Store result in enrollMessage
 //    5. Print message
 console.log(enrollMessage);
