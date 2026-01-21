@@ -56,7 +56,7 @@ class Book{
             this.isAvailable = false;
         }
     }
-    returnBook(title){
+    returnBook(){
         this.isAvailable = true;
         console.log("Thank you for returning the book")
     }
@@ -88,3 +88,5 @@ b1.borrow();
 b1.isAvailable();
 b4.borrow();
 b4.isAvailable();
+b1.returnBook();
+// let totalLongBooks = 

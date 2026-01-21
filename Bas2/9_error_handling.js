@@ -12,9 +12,14 @@ try {
     console.log(x);
     
 } catch (error) {
+    console.log(error.name);
+    console.log(error.message);
+    console.log(error.stack);
     
 }
-
+finally{
+    console.log("finally");
+}
 
 let b = 20;
 console.log(b);
