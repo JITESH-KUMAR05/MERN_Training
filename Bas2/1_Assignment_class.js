@@ -85,8 +85,21 @@ b4.getInfo();
 b5.getInfo();
 
 b1.borrow();
-b1.isAvailable();
+console.log(b1.isAvailable);
+;
 b4.borrow();
-b4.isAvailable();
+console.log();
+
 b1.returnBook();
-// let totalLongBooks = 
+let totalLongBooks = 0;
+if(b1.isLongBook()) totalLongBooks++;
+if(b2.isLongBook()) totalLongBooks++;
+if(b3.isLongBook()) totalLongBooks++;
+if(b4.isLongBook()) totalLongBooks++;
+if(b5.isLongBook()) totalLongBooks++;
+console.log(totalLongBooks);
+if(b1.isAvailable) b1.getInfo();
+if(b2.isAvailable) b2.getInfo();
+if(b3.isAvailable) b3.getInfo();
+if(b4.isAvailable) b4.getInfo();
+if(b5.isAvailable) b5.getInfo();
