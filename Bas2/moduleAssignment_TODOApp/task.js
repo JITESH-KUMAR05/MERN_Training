@@ -6,6 +6,8 @@ function addTask(title, priority, dueDate) {
     // Validate using imported functions
 
     // If valid, add to tasks array
+    dueDate = new Date(dueDate).getDate()
+    
     if(validateTitle(title) && validatePriority(priority) && validateDueDate(dueDate)){
         tasks.push({title,priority,dueDate});
         console.log("Success");
@@ -24,5 +26,7 @@ function getAllTasks() {
 
 function completeTask(taskId) {
     // Find task and mark as complete
-    task
+    tasks.splice(taskId-1,1);
 }
+
+export {addTask,getAllTasks,completeTask};
