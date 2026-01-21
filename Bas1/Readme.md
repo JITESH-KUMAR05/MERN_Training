@@ -69,7 +69,24 @@ B. Non Numeric
 
 
 
-# array operations in js 
+# array operations in javascript
+* push() --> adds an element at the end of the array
+* pop() --> removes an element from the end of the array
+* unshift() --> adds an element at the beginning of the array
+* shift() --> removes an element from the beginning of the array
+* splice() --> adds/removes elements from the array at a specific index
+* slice() --> returns a new array by extracting a portion of the array
+
+### how to use splice() method
+```javascript
+let arr = [1, 2, 3, 4, 5];
+// to add elements
+arr.splice(2, 0, 6, 7); // at index 2, remove 0 elements, add 6 and 7
+console.log(arr); // [1, 2, 6, 7, 3, 4, 5]
+// to remove elements
+arr.splice(2, 2); // at index 2, remove 2 elements
+console.log(arr); // [1, 2, 3, 4, 5]
+```
 
 
 
