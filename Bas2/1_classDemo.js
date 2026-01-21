@@ -35,5 +35,5 @@ let p2 = new Person(200,22,20000);
 p1.getPersonData();
 p2.getPersonData();
 
-// p1.#salary = 60000; // this will not be 
+// p1.#salary = 60000; // this will not be allowed to access as it's private
 console.log(Person.company);
