@@ -1,0 +1,20 @@
+import {getCartTotal,getCartItems} from './cart.js'
+// Available coupons
+const coupons = {
+  WELCOME10: { type: "percentage", value: 10, minAmount: 1000 },
+  FLAT500: { type: "flat", value: 500, minAmount: 5000 },
+  ELECTRONICS20: {
+    type: "percentage",
+    value: 20,
+    minAmount: 10000,
+    category: "electronics",
+  },
+};
+
+// validating the coupan
+export function validateCoupan(coupancode, cartTotal, cartItems){
+    let isCoupanExist = coupancode in Object.keys(coupons);
+    console.log(isCoupanExist);
+}
+validateCoupan('FLAT500',getCartTotal(),getCartItems());
+console.log(Object.keys(coupons))
