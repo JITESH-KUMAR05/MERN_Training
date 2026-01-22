@@ -26,6 +26,13 @@ export function validateCoupan(coupancode, cartTotal, cartItems){
 
 // calculating the discount
 export function calculateDiscount(coupanCode, cartTotal){
-    let discount = cartTotal;
-    let typeOf
+    let discountedPrice = cartTotal;
+    let typeOfDiscount  = coupons[coupanCode].type;
+    // console.log(typeOfDiscount)
+    if(typeOfDiscount==='flat'){
+        discountedPrice = discountedPrice - coupons[coupanCode].value
+    }
+    console.log(discountedPrice)
 }
+
+calculateDiscount('FLAT500',1000);

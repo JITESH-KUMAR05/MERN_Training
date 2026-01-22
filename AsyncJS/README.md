@@ -30,3 +30,21 @@
 
 ## Browsers javascript runtime  = javascript engine + Web APIs + Event Loop
 ## Node.js javascript runtime = javascript engine + node.js APIs + Event Loop
+
+### this node.js API contains minimum 4 threads and can get more threads based on the system configuration. upto maybe 1024 threads.
+
+### 1 synchronous blocking 
+### 2 synchronous non-blocking
+### 3 asynchronous non-blocking
+### 4 asynchronous blocking
+
+* question: is there anything which is asynchronous but not non-blocking?
+- answer : yes but where?
+
+
+## Promises
+* A Promise is an object that represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
+* A Promise can be in one of three states:
+- Pending: The initial state, neither fulfilled nor rejected.
+- Fulfilled: The operation completed successfully, resulting in a value.
+- Rejected: The operation failed, resulting in a reason for the failure.
