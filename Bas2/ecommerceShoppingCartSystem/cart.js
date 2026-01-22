@@ -18,8 +18,7 @@ export function addToCart(productId, quantity){
         cartItems.push({id:prd.id,name:prd.name,price:prd.price,category:prd.category,quantity:quantity});
     }
 }
-addToCart(1,5);
-addToCart(3,8);
+
 // console.log(cartItems);
 
 // remove from cart functionality
@@ -56,6 +55,7 @@ export function updateQuantity(productId,newQuantity){
 export function getCartItems(){
     return cartItems;
 }
+// console.log(getCartItems());
 // getting the cart total
 export function getCartTotal(){
     let total = cartItems.reduce((accumulator,product)=>accumulator+(product.price*product.quantity),0);

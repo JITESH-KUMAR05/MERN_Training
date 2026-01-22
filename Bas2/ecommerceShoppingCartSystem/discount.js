@@ -56,4 +56,4 @@ export function applyDiscount(cartTotal,coupanCode,cartItems){
     return {originalPrice : cartTotal,discount:discount,finalTotal:afterDiscount,message:"Sorry There is no Discount Available at the moment"};;
 }
 
-console.log(applyDiscount(1500,'FLAT500',{ id: 5, name: "Keyboard", price: 1500, stock: 30, category: "accessories" }));
+// console.log(applyDiscount(1500,'FLAT500',{ id: 5, name: "Keyboard", price: 1500, stock: 30, category: "accessories" }));
