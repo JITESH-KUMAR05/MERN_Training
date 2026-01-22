@@ -48,3 +48,7 @@
 - Pending: The initial state, neither fulfilled nor rejected.
 - Fulfilled: The operation completed successfully, resulting in a value.
 - Rejected: The operation failed, resulting in a reason for the failure.
+* Promises are used to handle asynchronous operations in JavaScript, providing a cleaner and more manageable way to work with callbacks.
+* Promises can be created using the Promise constructor, which takes a function with two parameters: resolve and reject.
+* Promises can be chained using the .then() method for handling fulfilled values and the .catch() method for handling rejected values.
+* Promises can also be created using async/await syntax, which allows for a more synchronous-looking code structure while still being asynchronous under the hood.
