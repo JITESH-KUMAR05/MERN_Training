@@ -23,3 +23,4 @@ async function getData(){
 }
 
 getData();
+console.log("Hello")

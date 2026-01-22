@@ -38,8 +38,7 @@
 ### 3 asynchronous non-blocking
 ### 4 asynchronous blocking
 
-* question: is there anything which is asynchronous but not non-blocking?
-- answer : yes but where?
+* question: is there anything which is asynchronous but blocking?
 
 
 ## Promises
