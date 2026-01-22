@@ -48,9 +48,9 @@ export function updateQuantity(productId,newQuantity){
     return false;
 
 }
-console.log(cartItems);
-console.log(removeFromCart(1));
-console.log(cartItems);
+// console.log(cartItems);
+// console.log(updateQuantity(3,20));
+// console.log(cartItems);
 
 // get the all cart items
 export function getCartItems(){
@@ -61,9 +61,12 @@ export function getCartTotal(){
     let total = cartItems.reduce((accumulator,product)=>accumulator+(product.price*product.quantity),0);
     return total;
 }
+// console.log(cartItems);
+// console.log(getCartTotal());
 
 // deleting the whole cart
 export function clearCart(){
     cartItems.splice(0,cartItems.length);
     return cartItems;
 }
+// console.log(clearCart());
