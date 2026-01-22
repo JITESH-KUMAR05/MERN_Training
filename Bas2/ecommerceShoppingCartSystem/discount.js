@@ -13,8 +13,19 @@ const coupons = {
 
 // validating the coupan
 export function validateCoupan(coupancode, cartTotal, cartItems){
-    let isCoupanExist = coupancode in Object.keys(coupons);
+    let isCoupanExist = false;
+    for(let val in coupons){
+        if(val === coupancode) {
+            isCoupanExist=true;
+            break;
+        }
+    }
     console.log(isCoupanExist);
 }
-validateCoupan('FLAT500',getCartTotal(),getCartItems());
-console.log(Object.keys(coupons))
+// validateCoupan('FLAT500',getCartTotal(),getCartItems());
+
+// calculating the discount
+export function calculateDiscount(coupanCode, cartTotal){
+    let discount = cartTotal;
+    let typeOf
+}
