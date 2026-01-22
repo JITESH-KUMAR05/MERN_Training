@@ -39,11 +39,11 @@ export function getProductByCategory(category){
 // searching of a product
 export function searchProducts(query){
     // now we have to search according to the query let's apply filer and try to match the name with the query
-    let searchedPrd = products.filter((product)=>product.name.toLowerCase === query.toLowerCase)
-    if(searchProducts !== undefined) return searchProducts;
-    return "No product Found"
+    let searchedPrd = products.filter((product)=>product.name.toLowerCase() === query.toLowerCase())
+    if(searchProducts !== undefined) return searchedPrd;
+    return undefined;
 }
-
+// console.log(searchProducts('phone'))
 // now we need to check if there is enough stock of a particular product or not 
 export function checkStock(productId,quantity){
     let prd = products.find((product)=>product.id===productId);
