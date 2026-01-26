@@ -1,0 +1,15 @@
+{
+  "name": "testapi2",
+  "version": "1.0.0",
+  "description": "This is for learning how to create api",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jitesh",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
