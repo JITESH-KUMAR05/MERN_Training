@@ -81,7 +81,8 @@ export function deactivateUser(id){
   // we need id as we should know which user we have to deactivate
   // now this is working let's try to make this function in one line if that's possible
   // let usersAfter = users.map((user) => user.id===id ? user.active=false:user) // this is returning only the active status so we have to write it inside the block
-  let usersAfter = users.map((user) => {
+  let clonedUser = structuredClone(users)
+  let usersAfter = clonedUser.map((user) => {
     if(user.id === id){
       user.active = false;
     }
@@ -92,4 +93,6 @@ export function deactivateUser(id){
 }
 
 // console.log(deactivateUser(1)); // now working 
+// console.log(users);
+
 //  with this module one is completed 
