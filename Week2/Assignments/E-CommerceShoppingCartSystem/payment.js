@@ -12,7 +12,7 @@ export function processPayment(paymentMethod,coupanCode=null){
     if(coupanCode!==null){
         let isValid = validateCoupan(coupanCode,totalPrice,allItems);
         let totalDiscount = calculateDiscount(coupanCode,totalPrice);
-        if(isValid){
+        if(isValid){ // if the coupon code is valid 
             finalPrice = finalPrice - totalDiscount;
             if(validatePaymentMethod(paymentMethod)){
                 let result = allItems.map((product)=>{
@@ -40,8 +40,10 @@ export function processPayment(paymentMethod,coupanCode=null){
             }
             return {orderId: generateOrderId(),items: allItems,subtotal: totalPrice,discount: totalDiscount,total: finalPrice,paymentMethod: paymentMethod,status: "failure", message: "Wrong Payment method"}
         }
+        // the coupon code is not valid
         return {orderId: generateOrderId(),items: allItems,subtotal: totalPrice,discount: totalDiscount,total: finalPrice,paymentMethod: paymentMethod,status: "failure", message: "Coupan code not valid"}
     }
+    // coupon code is not given checking the payment method directly
     if(validatePaymentMethod(paymentMethod)){
 
         let result = allItems.map((product)=>{
