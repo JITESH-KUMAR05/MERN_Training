@@ -38,6 +38,9 @@ app.use(express.json());
 // test local in memory data
 let users = [];
 
+// product will be like 
+// productId,name,price,brand
+let products = [];
 //  get request handing route (read users)
 app.get('/users',(req,res)=>{
     // send users data in res
@@ -96,4 +99,53 @@ app.delete('/users/:id',(req,res)=>{
     let deletedUser = users.splice(user,1);
     res.json({message:"Deleted Successfully",payload:deletedUser})
     
+})
+
+app.get('/products',(req,res)=>{
+    // sending all the products
+    res.status(200).json({message:"products",payload:products})
+})
+
+app.get('/products-id/:id',(req,res)=>{
+    // getting the product id then find the prodcut and send as payload
+    let prdId = Number(req.params.id);
+    let finPrd = products.find((prd)=>prd.productId==prdId);
+    if(!finPrd) return res.status(404).json({message:"product not found"})
+    res.status(200).json({message:"product",payload:finPrd});
+})
+
+// getting all the products of a particular brand
+app.get('/products-brand/:brand',(req,res)=>{
+    let givenBrand = req.params.brand;
+    let allProductsWithBrand = products.filter((prd)=>prd.brand===givenBrand);
+    if(!allProductsWithBrand) return res.status(404).json({message:"no product found"});
+    res.status(200).json({message:"products",payload:allProductsWithBrand});
+})
+
+app.post('/products',(req,res)=>{
+    // getting the product from body
+    let prd = req.body;
+    products.push(prd);
+    res.status(201).json({message:"product added"});
+})
+// updating the product with id
+app.put('/products/:id',(req,res)=>{
+    let newPrd = req.body;
+    let finPrd = products.findIndex((prdt)=>Number(req.params.id)===prdt.productId);
+    if(finPrd === -1) {
+        return res.status(404).json({message:"product not found"});
+    }
+    products.splice(finPrd,1,newPrd)
+    res.status(200).json({message:"product updated successfully"});
+})
+
+// delete a product by id
+app.delete('/products/:id',(req,res)=>{
+    let prdId = Number(req.params.id);
+    let finPrd = products.findIndex((prd)=>prd.productId===prdId);
+    if(finPrd==-1){
+        return res.status(404).json({message:"product not found"});
+    }
+    products.splice(finPrd,1);
+    res.status(200).json({message:"product deleted successfully"});
 })
