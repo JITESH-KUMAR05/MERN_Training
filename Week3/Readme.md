@@ -49,3 +49,12 @@
 * 400 Bad Request: The server could not understand the request due to invalid syntax.
 * 401 Unauthorized: The client must authenticate itself to get the requested response.
 * 403 Forbidden: The client does not have access rights to the content.
+
+## Middleware in Express.js
+* Middleware functions are functions that have access to the request object (req), the response object (res), and the next middleware function in the application’s request-response cycle.
+* Middleware functions can perform the following tasks:
+- Execute any code.
+- Make changes to the request and response objects.
+- End the request-response cycle.
+- Call the next middleware function in the stack.
+* If the current middleware function does not end the request-response cycle, it must call next() to pass control to the next middleware function. Otherwise, the request will be left hanging.

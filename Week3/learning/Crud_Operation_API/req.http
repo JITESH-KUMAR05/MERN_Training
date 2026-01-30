@@ -16,9 +16,13 @@ Content-Type: application/json
 
 {
     "id":100,
-    "name":"jkk",
+    "name":"tk",
     "age":19
 }
 
+### read a user by id
+GET http://localhost:3000/users/100
+
+
 ### 
-DELETE http://localhost:3000/users/id
+DELETE http://localhost:3000/users/100
