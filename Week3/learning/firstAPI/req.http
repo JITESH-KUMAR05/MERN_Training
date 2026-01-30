@@ -1,0 +1,24 @@
+GET http://localhost:3000/users
+
+###
+PUT http://localhost:3000/users/id
+Content-Type: application/json
+
+{
+    "id":100,
+    "name":"jkg",
+    "age":24
+}
+
+### 
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "id":100,
+    "name":"jkk",
+    "age":19
+}
+
+### 
+DELETE http://localhost:3000/users/id
