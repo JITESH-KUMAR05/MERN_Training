@@ -63,5 +63,4 @@ userApp.delete('/users/:id',(req,res)=>{
     if(user === -1) return res.json({message:"user not found"})
     let deletedUser = users.splice(user,1);
     res.json({message:"Deleted Successfully",payload:deletedUser})
-    
 })

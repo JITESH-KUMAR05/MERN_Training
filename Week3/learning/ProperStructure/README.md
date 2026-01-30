@@ -50,3 +50,14 @@
     POST http://localhost:3000/users --> to create a new user
     PUT http://localhost:3000/users/<id> --> to update user with id 
     DELETE http://localhost:3000/users/<id> --> to delete user with id 
+
+
+## Data -> 
+## Data Vs Information : the processed data is called information
+## Database : a structured collection of data
+## Database server : a software that provides database services to other computer programs or computers
+## DBMS
+
+## difference between sql and mysql?
+SQL (Structured Query Language) is a standard language used for managing and manipulating relational databases. It provides a set of commands for querying, updating, and managing data.
+MySQL is a specific implementation of a relational database management system (RDBMS) that uses SQL as its query language. It is an open-source database system that is widely used for web applications and other data storage needs.
