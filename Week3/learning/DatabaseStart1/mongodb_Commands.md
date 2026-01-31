@@ -65,7 +65,7 @@
 ## Difference between $in and $all
     $in : matches any value in the specified array
     $all : matches all values in the specified array
-    
+
 
 
 show collections
