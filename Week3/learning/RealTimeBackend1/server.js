@@ -30,3 +30,15 @@ app.use(express.json())
 app.use('/user-api',userApp);
 app.use('/product-api',productApp)
 
+
+// error handling middleware
+
+// function errorHandler(err,req,res,next){
+//     res.json({message:"error",reason:err,message});
+// }
+
+// app.use(errorHandler)
+// default error handler
+app.use((err,req,res,next)=>{
+    res.status(500).json({message:"error",reason:err,message})
+})
