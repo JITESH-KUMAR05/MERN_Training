@@ -48,7 +48,7 @@ userApp.put('/users/:id',async(req,res)=>{
     // get modified user from req
     let modifiedUser = req.body;
     // make update
-    let latestUser = await UserModel.findByIdAndUpdate(givenId,{$set:{...modifiedUser}},{new:true})
+    let latestUser = await UserModel.findByIdAndUpdate(givenId,{$set:{...modifiedUser}},{new:true,runValidators:true})
 
     // send res
 
