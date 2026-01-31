@@ -1,9 +1,10 @@
 import express from 'express'
 import { userApp } from './APIs/UserAPI.js'
 import {connect} from 'mongoose'
+import {productApp} from './APIs/ProductAPI.js'
 const app = express();
 
-
+const port = 4000;
 // connect to db server
 async function connectDB(){
     // connect('mongodb://localhost:27017')
@@ -14,7 +15,7 @@ async function connectDB(){
         console.log("successfully connected to DB");
         app.listen(port,()=>{
         console.log("Server running at port 4000");
-})
+    })
         
     }
     catch(err){
@@ -24,10 +25,8 @@ async function connectDB(){
     
 }
 connectDB();
-const port = 4000;
 
-app.use('/user-api',userApp);
 app.use(express.json())
-
-
+app.use('/user-api',userApp);
+app.use('/product-api',productApp)
 
