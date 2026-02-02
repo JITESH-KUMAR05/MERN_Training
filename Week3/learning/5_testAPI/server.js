@@ -4,7 +4,7 @@ import {connect} from "mongoose"
 import {userApp} from './APIs/UserAPI.js'
 
 const app = express();
-const port = 4000;
+const port = 3000;
 async function connectDB(){
     try{
         await connect("mongodb://localhost:27017/anuragdb")

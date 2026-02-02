@@ -1,17 +1,18 @@
-GET http://localhost:4000/user-api/users
+GET http://localhost:3000/user-api/users
 
 ### Read user by object id 
-GET http://localhost:4000/user-api/users/697dbc3d50a191a58fbfeb7b
+GET http://localhost:3000/user-api/users/697dbc3d50a191a58fbfeb7b
 
 
 ### post request
-POST http://localhost:4000/user-api/users
+POST http://localhost:3000/user-api/users
 Content-Type: application/json
 
 {
     "username":"suman",
     "password":"suman",
-    "age":21
+    "age":21,
+    "city":"viz"
 }
 
 ### updating an user by id
