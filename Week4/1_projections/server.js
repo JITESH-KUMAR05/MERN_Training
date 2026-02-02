@@ -2,6 +2,7 @@ import express from 'express'
 import { userApp } from './APIs/UserAPI.js'
 import {connect} from 'mongoose'
 import {productApp} from './APIs/ProductAPI.js'
+import cookieParser from 'cookie-parser'
 const app = express();
 
 const port = 4000;
@@ -27,6 +28,8 @@ async function connectDB(){
 connectDB();
 
 app.use(express.json())
+// adding cookieParser middleware
+app.use(cookieParser());
 app.use('/user-api',userApp);
 app.use('/product-api',productApp)
 
@@ -40,5 +43,5 @@ app.use('/product-api',productApp)
 // app.use(errorHandler)
 // default error handler
 app.use((err,req,res,next)=>{
-    res.status(500).json({message:"error",reason:err,message})
+    res.status(500).json({message:"error",reason:err})
 })

@@ -2,6 +2,8 @@ import express from 'express';
 import {UserModel} from '../models/UserModel.js'
 import {hash, compare} from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import { verfyToken } from '../middlewares/verifyToken.js'
+
 export const userApp = express.Router();
 
 // test routes
@@ -65,11 +67,19 @@ userApp.post('/auth',async(req,res)=>{
 
     // create signed token
     let signedToken = jwt.sign({username:username},'abcdef',{expiresIn:30})
-    // send token in res
-    res.status(200).json({message:"login success",token:signedToken});
+    // // send token in res
+    // res.status(200).json({message:"login success",token:signedToken}); // this is mistake we should not send as res
 
+    // save token as httpOnly cookie
+
+    res.cookie('token',signedToken,{
+        httpOnly:true,// it is httpOnly cookie
+        secure:false,
+        sameSite:"lax"
+    }) 
     
-
+    res.status(200).json({message:"login success"})
+    
 })
 
 // update 
@@ -94,4 +104,11 @@ userApp.delete('/users/:id',async(req,res)=>{
     let givenId = req.params.id;
     let deletedUser = await UserModel.findByIdAndDelete(givenId);
     res.status(200).json({message:"user removed",payload:deletedUser});
+})
+
+
+// test route (protected)
+userApp.get('/test' , verfyToken,(req,res)=>{
+    res.json({message:"test route"});
+
 })
