@@ -26,6 +26,17 @@ userApp.post('/users',async(req,res)=>{
 })
 
 
+// add products to user's cart
+
+userApp.post('users-cart/userid/:userid/productid/:productid',async(req,res)=>{
+    let userId = req.params.userid;
+    let productId = req.params.productid;
+
+    // storing the product id in the user cart
+    let latestCart = 
+})
+
+
 
 // add products to the users cart
 
