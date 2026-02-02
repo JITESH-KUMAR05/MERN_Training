@@ -7,7 +7,7 @@ const app = express();
 const port = 4000;
 async function connectDB(){
     try{
-        await connect("mongodb://localhost:27017/anuragdb2")
+        await connect("mongodb://localhost:27017/anuragdb")
         console.log("database connected successfully");
         app.listen(port,()=> console.log(`Server listening to port at ${port}`))
         

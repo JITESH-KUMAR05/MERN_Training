@@ -1,7 +1,7 @@
 // create the mini express application
 
 import express from "express"
-import {UserModel} from '../models/UserModel.js'
+import { UserModel } from '../models/UserModel.js'
 
 export const userApp = express.Router()
 // we have crearted the mini express or separate route application 
@@ -27,4 +27,10 @@ userApp.put('/users/:id',async(req,res)=>{
     let id = req.params.id;
     let modifiedUser = req.body;
     let latestUser = await UserModel.findByIdAndUpdate({id},{$set:{...modifiedUser}},{new:true,runValidators:true})
+})
+
+// delete request handler
+userApp.delete('/users/:id', async(req,res)=>{
+    let givenId = req.params.id;
+    let deletedUser = await UserModel.find
 })
