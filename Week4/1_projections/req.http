@@ -67,3 +67,6 @@ Content-Type: application/json
     "username":"suman",
     "password":"suman"
 }
+
+### this is req for prtected route
+GET http://localhost:4000/user-api/test

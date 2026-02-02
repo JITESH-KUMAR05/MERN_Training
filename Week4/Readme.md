@@ -54,8 +54,24 @@
 
 #### JWT Authentication Flow:
 1. once the user credentials are verified, server generates a JWT token and sends it to the user.
+2. User stores the token in local storage or cookies.
+3. For every subsequent request to protected routes, user sends the token in the Authorization header.
 
+### Important Points:
+* whenever we store the token in local storage, it is vulnerable to XSS attacks.
+* whenever we store the token in cookies, it is vulnerable to CSRF attacks.
+* so the local storage, session storage and normal cookies are not secure for storing tokens.
+* to store the token securely in cookies, we need to set the httpOnly and secure flags on the cookies.
+* httpOnly flag prevents the client-side scripts from accessing the cookies.
+* so the safest way to store the token is to use httpOnly and secure cookies. only server can access these cookies.
 
-* There are two types of authentication:
+### There are two types of authentication:
   1. Session-based authentication
   2. Token-based authentication
+
+### Authentication and Authorization are different:
+* Authentication is the process of verifying the identity of a user.
+* Authorization is the process of verifying the access rights of a user.
+* Authentication is done before authorization.
+
+## Making Authenticated Requests:
