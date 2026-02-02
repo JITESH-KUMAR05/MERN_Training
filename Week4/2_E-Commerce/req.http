@@ -22,3 +22,7 @@ Content-Type: application/json
     "password":"jitu",
     "cart":[]
 }
+
+### REq to add product to cart
+# PUT http://localhost:4000/user-api/user-cart/userid/<userid>/productid/<productid>
+PUT http://localhost:4000/user-api/user-cart/userid/698071abf81b05f222f28bd4/productid/6980679330d9afbd06ab8d8d
