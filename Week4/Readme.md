@@ -95,3 +95,32 @@
 #### populate() function in Mongoose:
 * The populate() function is used to populate the referenced documents in a document.
 * It is used to perform JOIN operations in MongoDB.
+
+## Password traps in mongoose:
+* the reason is we are not hashing the other fields except password.
+
+### Unique is not a validator it is an option so we cannot customize the error message for unique property.
+### but recently in new Express versions we can customize the error message for unique property.
+
+## So now our E-Commerce backend is a scalable backend.
+
+
+# BLOG App
+* we will learn role based authentication and authorization.
+## Roles:
+* Admin : login,view Articles,Block/Unblock Users.
+* User : login,register,view Articles,write Articles
+* Author : register,login,Add Articles,view Articles,edit Articles,delete Articles.
+
+## Function declaration vs function expression:
+* Function Declaration : function funcName() {}
+* Function Expression : const funcName = function() {}
+
+### the real thing about any application is Database Architecture.
+### so we need to design the database architecture before starting any application.
+### Steps to design Database Architecture in terms of Collections and Documents:
+1. Identify the main entities in the application.
+2. Identify the relationships between the entities.
+3. Identify the fields for each entity.
+
+## Guides for building a scalable backend:
