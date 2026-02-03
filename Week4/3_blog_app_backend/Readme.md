@@ -16,3 +16,9 @@
 
 6. Connect to database
     npm install mongoose
+
+7. Add middlewares (like body-parser, error-handling)
+    
+8. Design Schemas and create models
+
+9. Design REST API for all resources
