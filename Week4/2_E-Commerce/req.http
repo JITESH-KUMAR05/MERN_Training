@@ -17,12 +17,15 @@ POST http://localhost:4000/user-api/users
 Content-Type: application/json
 
 {
-    "name":"jitu",
-    "email":"jitu@gmail.com",
-    "password":"jitu",
+    "name":"testing",
+    "email":"testing@gmail.com",
+    "password":"testing",
     "cart":[]
 }
 
 ### REq to add product to cart
 # PUT http://localhost:4000/user-api/user-cart/userid/<userid>/productid/<productid>
-PUT http://localhost:4000/user-api/user-cart/userid/698071abf81b05f222f28bd4/productid/6980679330d9afbd06ab8d8d
+PUT http://localhost:4000/user-api/user-cart/user-id/69818dee31acbd2589139b14/product-id/69806837256decb9d9ecd4a7
+
+### Reading the user by id
+GET http://localhost:4000/user-api/users/69818dee31acbd2589139b14

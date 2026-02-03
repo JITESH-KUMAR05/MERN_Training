@@ -78,3 +78,49 @@
 1. When Client Application makes req after successful login, the httpOnly cookie containing the JWT token is automatically included in the request headers.
 2. The middleware in the express server can extract the cookie using libraries like cookie-parser.
 3. The middleware verifies the JWT token to authenticate the user.
+
+### Aggregation Pipeline in Mongoose:
+* Aggregation pipeline is a framework for data aggregation in MongoDB.
+* It is used to perform complex data analysis and transformation operations on the data stored in MongoDB.
+* It consists of a series of stages that process the data in a sequential manner.
+* Each stage performs a specific operation on the data and passes the result to the next stage.
+* Some common stages in the aggregation pipeline are:
+  1. $match : filters the documents based on a specified condition.
+  2. $group : groups the documents based on a specified field and performs aggregation operations like sum, avg, count etc.
+  3. $sort : sorts the documents based on a specified field.
+  4. $project : reshapes the documents by including or excluding specific fields.
+  5. $limit : limits the number of documents returned.
+  6. $skip : skips a specified number of documents.
+
+#### populate() function in Mongoose:
+* The populate() function is used to populate the referenced documents in a document.
+* It is used to perform JOIN operations in MongoDB.
+
+## Password traps in mongoose:
+* the reason is we are not hashing the other fields except password.
+
+### Unique is not a validator it is an option so we cannot customize the error message for unique property.
+### but recently in new Express versions we can customize the error message for unique property.
+
+## So now our E-Commerce backend is a scalable backend.
+
+
+# BLOG App
+* we will learn role based authentication and authorization.
+## Roles:
+* Admin : login,view Articles,Block/Unblock Users.
+* User : login,register,view Articles,write Articles
+* Author : register,login,Add Articles,view Articles,edit Articles,delete Articles.
+
+## Function declaration vs function expression:
+* Function Declaration : function funcName() {}
+* Function Expression : const funcName = function() {}
+
+### the real thing about any application is Database Architecture.
+### so we need to design the database architecture before starting any application.
+### Steps to design Database Architecture in terms of Collections and Documents:
+1. Identify the main entities in the application.
+2. Identify the relationships between the entities.
+3. Identify the fields for each entity.
+
+## Guides for building a scalable backend:
