@@ -29,20 +29,42 @@ userApp.post('/users',async(req,res)=>{
 
 // add products to user's cart
 
-userApp.put('/user-cart/userid/:userid/productid/:productid',async(req,res)=>{
-    let userId = req.params.userid;
-    let productId = req.params.productid;
+userApp.put('/user-cart/user-id/:uid/product-id/:pid',async(req,res)=>{
+    // getting the user-id and product-id from the url params
+    let userId = req.params.uid;
+    let productId = req.params.pid;
+    // perform the update so need to check if user exist or not and then product exist or not
+    // check user
+    let user = await UserModel.findById(userId);
+    if(!user){
+        return res.status(401).json({message:"user not found"});
+    }
     let product = await ProductModel.findById(productId);
-
+    if(!product){
+        return res.status(401).json({message:"product not found"});
+    }
     // storing the product id in the user cart
-    let latestCart = await UserModel.updateOne({_id:userId},{$push:{"cart":{"product.productName":productId}}})
-    res.status(200).json({message:"Item Added to cart"})
+    // perform update
+    // let modifiedUser = await UserModel.updateOne({_id:userId},{$push:{"cart":{"product.productName":productId}}})
+    // res.status(200).json({message:"Item Added to cart"})
+    let modifiedUser = await UserModel.findByIdAndUpdate(userId,
+        {
+            $push:{cart:{product:productId}}
+        },
+        {new:true}
+    ).populate("cart.product","productName price")
+    res.status(200).json({message:"cart updated",payload:modifiedUser})
 })
 
 
+// Reading the user data with alll the information about the user and all the cart items with details not only references
 
-// add products to the users cart
+userApp.get('/users/:id', async(req,res)=>{
+    // reading the user id with from params
+    let uid = req.params.id;
 
-userApp.get('/users', async(req,res)=>{
-    
+    let userList = await UserModel.findById(uid).populate("cart.product","productName price");
+    // console.log(userList);
+
+    res.status(200).json({message:"Users details",payload:userList})
 })
