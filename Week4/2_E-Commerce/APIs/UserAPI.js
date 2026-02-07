@@ -1,8 +1,9 @@
 // creating the mini express application
 
 import express from 'express'
-import {hash} from 'bcryptjs'
+import {hash, compare} from 'bcryptjs'
 import { UserModel } from '../models/UserModel.js';
+import jwt from 'jsonwebtoken'
 import { ProductModel } from '../models/ProductModel.js';
 // import {Types} from 'mongoose'
 
@@ -35,6 +36,36 @@ userApp.post('/users',async(req,res)=>{
 })
 
 // Login
+
+userApp.post("/auth",async(req,res)=>{
+    // let the user credentials from the request
+    let {name,password} = req.body;
+    console.log(name,password)
+    let findUsername = await UserModel.findOne({name:name});
+    if(!findUsername){
+        return res.status(401).json({message:"user not found"});
+    }
+    let status = await compare(password,findUsername.password);
+
+    if(status===false){
+        return res.status(404).json({message:"Wrong Password"})
+        
+    }
+
+    // creating the token for this user
+    let signedToken = jwt.sign({name:name},process.env.SECRET,{expiresIn:300})
+
+    // we should not send the token as a res
+    // we should only save it to httponly cookie
+
+    res.cookie('token',signedToken,{
+        httpOnly:true,
+        secure:false,
+        sameSite:"lax"
+    })
+
+    res.status(200).json({message:"login success"})
+})
 
 
 // add products to user's cart
