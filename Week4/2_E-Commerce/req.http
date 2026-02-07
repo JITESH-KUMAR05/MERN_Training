@@ -1,3 +1,24 @@
+
+### Creating the new user
+POST http://localhost:4000/user-api/users
+Content-Type: application/json
+
+{
+    "name":"DJEMAIL",
+    "email":"djemail@gmail.com",
+    "password": "DJEMAIL"
+}
+
+###  Login for user
+
+POST http://localhost:4000/user-api/auth
+Content-Type: application/json
+
+{
+    "name":"DJEMAIL",
+    "password":"DJEMAIL"
+}
+
 ### Create new product req
 
 POST http://localhost:4000/product-api/products

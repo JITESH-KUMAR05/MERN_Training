@@ -1,12 +1,14 @@
 // creating the http server
 import express from 'express'
 import {connect} from 'mongoose'
+import {config} from 'dotenv'
 import { productApp } from './APIs/ProductAPI.js';
 import {userApp} from './APIs/UserAPI.js'
 import cookieParser from 'cookie-parser';
 
-const app = express()
 
+const app = express()
+config();
 const port = 4000;
 
 async function connectDB(){

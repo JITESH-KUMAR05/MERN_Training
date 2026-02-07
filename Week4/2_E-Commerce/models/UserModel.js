@@ -34,6 +34,7 @@ const userSchema = new Schema({
         type:String,
         unique:true,
         required:[true,"email is required"],
+        pattern:"/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/."
         // regex can be used
     },
     password:{
