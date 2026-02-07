@@ -4,7 +4,7 @@ import express from 'express'
 import {hash} from 'bcryptjs'
 import { UserModel } from '../models/UserModel.js';
 import { ProductModel } from '../models/ProductModel.js';
-import {Types} from 'mongoose'
+// import {Types} from 'mongoose'
 
 export const userApp = express.Router()
 
@@ -33,6 +33,8 @@ userApp.post('/users',async(req,res)=>{
     res.status(201).json({message:"user created",payload:newUserDoc})
     
 })
+
+// Login
 
 
 // add products to user's cart
