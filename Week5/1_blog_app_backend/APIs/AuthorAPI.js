@@ -1,8 +1,8 @@
 import express from 'express'
 import {register,authenticate} from '../services/authService.js'
-import { UserTypeModel } from '../models/UserModel.js';
 import { ArticleModel } from '../models/ArticleModel.js';
 import {validAuthor} from '../middlewares/validAuthor.js'
+import { verifyToken } from '../middlewares/verifyToken.js';
 export const authorRoute = express.Router()
 
 
@@ -33,8 +33,8 @@ authorRoute.post("/login",async(req,res)=>{
     res.status(200).json({message:"Author login seccess",payload:user});
 
 })
-// create article
-authorRoute.post("/articles",validAuthor,async(req,res)=>{
+// create article (private or protected)
+authorRoute.post("/articles",verifyToken,validAuthor,async(req,res)=>{
     // get the article from req
     let articleObj = req.body;
    
@@ -46,8 +46,8 @@ authorRoute.post("/articles",validAuthor,async(req,res)=>{
     res.status(201).json({message:"article created",payload:article});
 })
 
-// read articles
-authorRoute.get("/articles/:authorid",validAuthor,async(req,res)=>{
+// read articles (private or protected)
+authorRoute.get("/articles/:authorid",verifyToken,validAuthor,async(req,res)=>{
     // get the author id
     let authorId = req.params.authorid;
    
@@ -75,8 +75,8 @@ authorRoute.get("/articles/:authorid",validAuthor,async(req,res)=>{
 //     res.status(200).json({message:"article updated",payload:updatedArticle});
 // })
 
-// edit article by author (sirs version)
-authorRoute.put("/articles", validAuthor, async(req,res)=>{
+// edit article by author (sirs version) (private or protected)
+authorRoute.put("/articles",verifyToken, validAuthor, async(req,res)=>{
     // get the modified article from req
     let {articleId,author,category,title,content} = req.body;
     // find and update the article
@@ -98,8 +98,8 @@ authorRoute.put("/articles", validAuthor, async(req,res)=>{
     res.status(200).json({message:"article updated",payload:updatedArticle});
 })
 
-// delete (soft delete)
-authorRoute.put('/author/:authorid/article/:articleid',validAuthor,async(req,res)=>{
+// delete (soft delete)  (private or protected)
+authorRoute.put('/author/:authorid/article/:articleid',verifyToken,validAuthor,async(req,res)=>{
     // get the article id
     let aid = req.params.articleid;
     let author = req.params.authorid;
