@@ -25,9 +25,9 @@ POST http://localhost:4000/author-api/users
 Content-Type: application/json
 
 {
-    "firstName": "vikas",
+    "firstName": "test",
     "lastName": "author",
-    "email": "vikas.author@example.com",
+    "email": "test.author@example.com",
     "password": "password123",
     "profileImageUrl": "https://example.com/profile-picture.jpg"
 }
@@ -57,3 +57,18 @@ Content-Type: application/json
 
 ### Read all articles by an author
 GET http://localhost:4000/author-api/articles/69896622075606f41d6fcf79
+
+### Update an article (AUTHOR)
+PUT http://localhost:4000/author-api/articles
+Content-Type: application/json
+
+{
+    "author":"69896622075606f41d6fcf79",
+    "articleId" : "69898278c8c9f32745bfada5",
+    "title": "My second Article2",
+    "category": "programming2",
+    "content": "This is the content of my second article updated again."
+}
+
+### Soft delete an article (AUTHOR)
+PUT http://localhost:4000/author-api/author/69896622075606f41d6fcf79/article/69898241c8c9f32745bfad9d

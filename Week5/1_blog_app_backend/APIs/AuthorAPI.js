@@ -37,11 +37,7 @@ authorRoute.post("/login",async(req,res)=>{
 authorRoute.post("/articles",validAuthor,async(req,res)=>{
     // get the article from req
     let articleObj = req.body;
-    // validate the author
-    // let isMatchUser = await UserTypeModel.findById(articleObj.author);
-    // if(!isMatchUser || isMatchUser.role != "AUTHOR"){
-    //     return res.status(401).json({message:"author not exist!"})
-    // }
+   
     // create the article document 
     let articleDoc = new ArticleModel(articleObj);
     // save the article
@@ -54,17 +50,72 @@ authorRoute.post("/articles",validAuthor,async(req,res)=>{
 authorRoute.get("/articles/:authorid",validAuthor,async(req,res)=>{
     // get the author id
     let authorId = req.params.authorid;
-    // check the author
-    // let isMatchUser = await UserTypeModel.findById(authorId);
-    // if(!isMatchUser || isMatchUser.role != "AUTHOR"){
-    //     return res.status(401).json({message:"author not exist!"})
-    // }
+   
     // read the articles by the author
-    let allArticles = await ArticleModel.find({author:authorId,isArticleActive:true});
+    let allArticles = await ArticleModel.find({author:authorId,isArticleActive:true}).populate("author","firstName email");
     // res
     res.status(200).json({message:"author articles",payload:allArticles})
 })
 
-// edit article
+// // edit article by author my version
+// authorRoute.put("/articles", validAuthor, async(req,res)=>{
+//     // get the modified article from req
+//     let modifiedArticle = req.body;
+//     let id=modifiedArticle.articleId;
+//     delete modifiedArticle.articleId;
+//     // find and update the article
+//     let updatedArticle = await ArticleModel.findOneAndUpdate(
+//         {_id:id},
+//         {...modifiedArticle},
+//         {new:true}
+//     ).populate("author")
+
+//     // res
+
+//     res.status(200).json({message:"article updated",payload:updatedArticle});
+// })
+
+// edit article by author (sirs version)
+authorRoute.put("/articles", validAuthor, async(req,res)=>{
+    // get the modified article from req
+    let {articleId,author,category,title,content} = req.body;
+    // find and update the article
+    let articleOfDB = await ArticleModel.findOne({_id:articleId,author:author});
+    if(!articleOfDB){
+        return res.status(401).json({message:"Article not found"})
+    }
+
+    let updatedArticle = await ArticleModel.findByIdAndUpdate(
+        articleId,
+        {
+            $set:{title,category,content}
+        },
+        {new:true}
+    )
+
+    // res
+
+    res.status(200).json({message:"article updated",payload:updatedArticle});
+})
+
 // delete (soft delete)
-// read articles of author
+authorRoute.put('/author/:authorid/article/:articleid',validAuthor,async(req,res)=>{
+    // get the article id
+    let aid = req.params.articleid;
+    let author = req.params.authorid;
+    // find the article
+    let articleOfDB = await ArticleModel.findOne({_id:aid,author:author});
+    if(!articleOfDB){
+        res.status(401).json({message:"article not found or not belong to you"})
+    }
+
+    // make the article status to false (isArticleActive)
+    let UpdatedArticle = await ArticleModel.findOneAndUpdate(
+        {_id:aid},
+        {$set:{isArticleActive:false}},
+        {new:true}
+    )
+
+    res.status(200).json({message:"deleted the article softly"})
+
+})

@@ -75,7 +75,7 @@
 * Authentication is done before authorization.
 
 ## Making Authenticated Requests:
-1. When Client Application makes req after successful login, the httpOnly cookie containing the JWT token is automatically included in the request headers.
+1. When Client Application makes req after successful login, the httpOnly cookie containing the JWT token is ** automatically ** included in the request headers.
 2. The middleware in the express server can extract the cookie using libraries like cookie-parser.
 3. The middleware verifies the JWT token to authenticate the user.
 
