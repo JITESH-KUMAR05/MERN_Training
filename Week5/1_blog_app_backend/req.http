@@ -43,12 +43,17 @@ Content-Type: application/json
 }
 
 ### Create article
-POST http://localhost:4000/article-api/articles
+POST http://localhost:4000/author-api/articles
 Content-Type: application/json
 
 {
     "author":"69896622075606f41d6fcf79",
-    "title": "My First Article",
-    "category": "Technology",
-    "content": "This is the content of my first article.",
+    "title": "My second Article",
+    "category": "programming",
+    "content": "This is the content of my second article."
 }
+
+
+
+### Read all articles by an author
+GET http://localhost:4000/author-api/articles/69896622075606f41d6fcf79

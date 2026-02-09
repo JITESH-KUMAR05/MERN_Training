@@ -2,6 +2,7 @@ import express from 'express'
 import {register,authenticate} from '../services/authService.js'
 import { UserTypeModel } from '../models/UserModel.js';
 import { ArticleModel } from '../models/ArticleModel.js';
+import {validAuthor} from '../middlewares/validAuthor.js'
 export const authorRoute = express.Router()
 
 
@@ -33,14 +34,14 @@ authorRoute.post("/login",async(req,res)=>{
 
 })
 // create article
-authorRoute.post("/articles",async(req,res)=>{
+authorRoute.post("/articles",validAuthor,async(req,res)=>{
     // get the article from req
     let articleObj = req.body;
     // validate the author
-    let isMatchUser = await UserTypeModel.findById(articleObj.author);
-    if(!isMatchUser){
-        return res.status(401).json({message:"author not exist!"})
-    }
+    // let isMatchUser = await UserTypeModel.findById(articleObj.author);
+    // if(!isMatchUser || isMatchUser.role != "AUTHOR"){
+    //     return res.status(401).json({message:"author not exist!"})
+    // }
     // create the article document 
     let articleDoc = new ArticleModel(articleObj);
     // save the article
@@ -48,6 +49,22 @@ authorRoute.post("/articles",async(req,res)=>{
     // send res
     res.status(201).json({message:"article created",payload:article});
 })
+
+// read articles
+authorRoute.get("/articles/:authorid",validAuthor,async(req,res)=>{
+    // get the author id
+    let authorId = req.params.authorid;
+    // check the author
+    // let isMatchUser = await UserTypeModel.findById(authorId);
+    // if(!isMatchUser || isMatchUser.role != "AUTHOR"){
+    //     return res.status(401).json({message:"author not exist!"})
+    // }
+    // read the articles by the author
+    let allArticles = await ArticleModel.find({author:authorId,isArticleActive:true});
+    // res
+    res.status(200).json({message:"author articles",payload:allArticles})
+})
+
 // edit article
 // delete (soft delete)
 // read articles of author
