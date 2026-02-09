@@ -1,0 +1,59 @@
+### User Register
+POST http://localhost:4000/user-api/users
+Content-Type: application/json
+
+{
+    "firstName": "sai",
+    "lastName": "teja",
+    "email": "sai.teja@example.com",
+    "password": "password123",
+    "profileImageUrl": "https://example.com/profile-picture.jpg"
+}
+
+### User Login
+POST http://localhost:4000/user-api/login
+Content-Type: application/json
+
+{
+    "email": "sai.teja@example.com",
+    "password": "password123",
+    "role": "USER"
+}
+
+### Author Register
+POST http://localhost:4000/author-api/users
+Content-Type: application/json
+
+{
+    "firstName": "vikas",
+    "lastName": "author",
+    "email": "vikas.author@example.com",
+    "password": "password123",
+    "profileImageUrl": "https://example.com/profile-picture.jpg"
+}
+
+### Author Login
+POST http://localhost:4000/author-api/login
+Content-Type: application/json
+
+{
+    "email": "vikas.author@example.com",
+    "password": "password123",
+    "role": "AUTHOR"
+}
+
+### Create article
+POST http://localhost:4000/author-api/articles
+Content-Type: application/json
+
+{
+    "author":"69896622075606f41d6fcf79",
+    "title": "My second Article",
+    "category": "programming",
+    "content": "This is the content of my second article."
+}
+
+
+
+### Read all articles by an author
+GET http://localhost:4000/author-api/articles/69896622075606f41d6fcf79
