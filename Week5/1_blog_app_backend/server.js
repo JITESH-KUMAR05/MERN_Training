@@ -1,6 +1,7 @@
 import express from 'express'
 import {connect} from 'mongoose'
 import {config} from 'dotenv'
+import cookieParser from 'cookie-parser'
 import {userRoute} from './APIs/UserAPI.js'
 import {adminRoute} from './APIs/AdminAPI.js'
 import {authorRoute} from './APIs/AuthorAPI.js'
@@ -21,8 +22,10 @@ const connectDB = async ()=>{
         console.log(err.message)
     }
 }
-
+// adding the body parser
 app.use(express.json())
+// adding the cookie parser middleware
+app.use(cookieParser());
 app.use('/user-api',userRoute);
 app.use('/admin-api',adminRoute);
 app.use('/author-api',authorRoute);
@@ -30,6 +33,17 @@ app.use('/author-api',authorRoute);
 connectDB()
 
 
+// logout request
+app.post('/logout',(req,res)=>{
+    // clear the cookie 
+    res.clearCookie('token',{
+        httpOnly:true,
+        secure:false,
+        sameSite:'lax'
+    })
+
+    res.status(200).json({message:"logout successfully"})
+})
 
 // default error handler
 
