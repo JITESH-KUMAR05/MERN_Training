@@ -110,5 +110,4 @@ userApp.delete('/users/:id',async(req,res)=>{
 // test route (protected)
 userApp.get('/test' , verfyToken,(req,res)=>{
     res.json({message:"test route"});
-
 })
