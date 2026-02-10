@@ -46,17 +46,20 @@ commonRouter.put("/change-password",verifyToken,async(req,res)=>{
     if(!user){
       return res.status(401).json({message:"no user with this email"})
     }
-    let hash
-    if(user.password !== oldPassword){
+    console.log(user)
+    
+    let comparePass = await compare(user.password,oldPassword)
+    if(!comparePass){
       return res.status(401).json({message:"Sorry Wrong password"})
     }
     // console.log("Hello")
     // if the password is same then replace with new 
+    newPassword = await hash(newPassword,12)
     let userWithUpdatedPass = await UserTypeModel.findOneAndReplace(
       {email:email},
       {$set:{password:newPassword}},
       {new:true}
     )
-    // res
+    // res    
     res.status(200).json({message:"chenged the password successfully",payload: userWithUpdatedPass})
 })
