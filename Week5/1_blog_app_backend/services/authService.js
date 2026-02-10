@@ -38,6 +38,11 @@ export const authenticate = async(email,password) => {
         err.status = 401;
         throw err;
     }
+    if(user.isActive === false){
+        let err = new Error("Your Account has been blocked please contact admin");
+        err.status = 403;
+        throw err;
+    }
     // generate the token
     let signedToken = jwt.sign({userId:user._id,role:user.role,email:user.email},process.env.JWT_SECRET,{expiresIn:"1h"});
 

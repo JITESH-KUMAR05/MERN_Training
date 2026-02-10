@@ -1,5 +1,8 @@
 import express from "express";
 import {authenticate} from '../services/authService.js'
+import {hash,compare} from "bcryptjs"
+import { verifyToken } from "../middlewares/verifyToken.js";
+import { UserTypeModel } from "../models/UserModel.js";
 
 export const commonRouter = express.Router();
 
@@ -30,4 +33,30 @@ commonRouter.get('/logout',(req,res)=>{
     })
 
     res.status(200).json({message:"logout successfully"})
+})
+
+
+// change the password
+commonRouter.put("/change-password",verifyToken,async(req,res)=>{
+    // get the current password and new password along with email
+    let { email, oldPassword, newPassword} = req.body;
+    // first let's find if there is any user with the mail
+    let user = await UserTypeModel.findOne({email:email});
+    // compare the old password
+    if(!user){
+      return res.status(401).json({message:"no user with this email"})
+    }
+    let hash
+    if(user.password !== oldPassword){
+      return res.status(401).json({message:"Sorry Wrong password"})
+    }
+    // console.log("Hello")
+    // if the password is same then replace with new 
+    let userWithUpdatedPass = await UserTypeModel.findOneAndReplace(
+      {email:email},
+      {$set:{password:newPassword}},
+      {new:true}
+    )
+    // res
+    res.status(200).json({message:"chenged the password successfully",payload: userWithUpdatedPass})
 })
