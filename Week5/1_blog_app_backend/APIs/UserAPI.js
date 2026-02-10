@@ -18,26 +18,26 @@ userRoute.post("/users",async(req,res)=>{
     res.status(201).json({message:"user created",payload:newUserObj});
 
 })
-// authenticate user (login)
-userRoute.post("/login",async(req,res)=>{
-    // get the email and password
-    let {email,password,role} = req.body;
-    // call the authenticate function
-    let {token,user} = await authenticate(email,password,role);
-    // save token as httpOnly cookie
-    res.cookie("token",token,{
-        httpOnly:true,
-        sameSite:"lax",
-        secure:false,
-    });
-    // send res
-    res.status(200).json({message:"user login seccess",payload:user});
+// authenticate user (login)  ---> Not required now as we have made this common for all the roles
+// userRoute.post("/login",async(req,res)=>{
+//     // get the email and password
+//     let {email,password,role} = req.body;
+//     // call the authenticate function
+//     let {token,user} = await authenticate(email,password,role);
+//     // save token as httpOnly cookie
+//     res.cookie("token",token,{
+//         httpOnly:true,
+//         sameSite:"lax",
+//         secure:false,
+//     });
+//     // send res
+//     res.status(200).json({message:"user login seccess",payload:user});
 
-})
+// })
 // read all articles (protected Route)
 userRoute.get('/user/:uid/articles',verifyToken,validUser,async(req,res)=>{
     // read all the articles from the articles collection 
-    let allArticles = await ArticleModel.find();
+    let allArticles = await ArticleModel.find().populate("author comments.user");
     // send all the articles as response
     res.status(200).json({message:"All the articles",payload:allArticles});
 })
@@ -59,6 +59,5 @@ userRoute.put('/user/:uid/article/:aid',verifyToken,validUser,async(req,res)=>{
     )
 
     res.status(200).json({message:"comment added",payload:newArticle});
-
 
 })

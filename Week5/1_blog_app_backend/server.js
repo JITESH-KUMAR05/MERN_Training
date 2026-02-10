@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser'
 import {userRoute} from './APIs/UserAPI.js'
 import {adminRoute} from './APIs/AdminAPI.js'
 import {authorRoute} from './APIs/AuthorAPI.js'
+import { commonRouter } from './APIs/CommmonAPI.js'
 const app = express();
 
 config() // process.env
@@ -29,21 +30,16 @@ app.use(cookieParser());
 app.use('/user-api',userRoute);
 app.use('/admin-api',adminRoute);
 app.use('/author-api',authorRoute);
+app.use('/common-api',commonRouter)
 
 connectDB()
 
-
-// logout request
-app.post('/logout',(req,res)=>{
-    // clear the cookie 
-    res.clearCookie('token',{
-        httpOnly:true,
-        secure:false,
-        sameSite:'lax'
-    })
-
-    res.status(200).json({message:"logout successfully"})
+// dealing with invalid path
+app.use((req,res,next)=>{
+    console.log(req.url)
+    res.status(404).json({message: `${req.url} is Invalid Path`});
 })
+
 
 // default error handler
 

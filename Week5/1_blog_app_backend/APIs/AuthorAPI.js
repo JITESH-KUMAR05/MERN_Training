@@ -17,22 +17,7 @@ authorRoute.post("/users",async(req,res)=>{
     res.status(201).json({message:"Author created",payload:newAuthorObj});
 
 })
-// authenticate author
-authorRoute.post("/login",async(req,res)=>{
-    // get the email and password
-    let {email,password,role} = req.body;
-    // call the authenticate function
-    let {token,user} = await authenticate(email,password,role);
-    // save token as httpOnly cookie
-    res.cookie("token",token,{
-        httpOnly:true,
-        sameSite:"lax",
-        secure:false,
-    });
-    // send res
-    res.status(200).json({message:"Author login seccess",payload:user});
 
-})
 // create article (private or protected)
 authorRoute.post("/articles",verifyToken,validAuthor,async(req,res)=>{
     // get the article from req
@@ -110,12 +95,12 @@ authorRoute.put('/author/:authorid/article/:articleid',verifyToken,validAuthor,a
     }
 
     // make the article status to false (isArticleActive)
-    let UpdatedArticle = await ArticleModel.findOneAndUpdate(
+    let updatedArticle = await ArticleModel.findOneAndUpdate(
         {_id:aid},
         {$set:{isArticleActive:false}},
         {new:true}
     )
 
-    res.status(200).json({message:"deleted the article softly"})
+    res.status(200).json({message:"deleted the article softly",payload:updatedArticle})
 
 })
