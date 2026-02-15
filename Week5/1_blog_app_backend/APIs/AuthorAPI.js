@@ -15,7 +15,6 @@ authorRoute.post("/users",async(req,res)=>{
 
     // send the res
     res.status(201).json({message:"Author created",payload:newAuthorObj});
-
 })
 
 // create article (private or protected)
@@ -102,5 +101,4 @@ authorRoute.put('/author/:authorid/article/:articleid',verifyToken,validAuthor,a
     )
 
     res.status(200).json({message:"deleted the article softly",payload:updatedArticle})
-
 })
