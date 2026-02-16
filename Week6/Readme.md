@@ -38,3 +38,14 @@
 ## Note 
 * relative --> relative to its current position
 * absolute --> relative to its nearest positioned ancestor
+
+
+# Media Queries
+Media queries are a powerful tool in CSS that allow you to apply different styles based on the characteristics of the device or viewport. They are commonly used in responsive web design to create layouts that adapt to different screen sizes and orientations.
+The basic syntax of a media query is as follows:
+
+```css
+@media media-type operator (media-feature) {
+  /* CSS rules to apply when the condition is true */
+}
+```
