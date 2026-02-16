@@ -1,0 +1,65 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+}
+
+body{
+    background-color: gray;
+}
+
+.main{
+    width: 250px;
+    /* height: 800px; */
+    margin: auto;
+    margin-top: 100px;
+    padding: 40px;
+    text-align: center;
+    background-color: white;
+    border-radius: 20px;
+    position: relative;
+}
+.img{
+    text-align: center;
+    /* margin: auto; */
+    margin: 0 0 40px 0;
+}
+img{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+.texts{
+    text-align: center;
+}
+.colored{
+    background-color: rgb(77, 77, 222);
+    width: 100px;
+    border-radius: 10px;
+    color: white;
+    margin: auto;
+}
+
+p{
+    width: 200px;
+    margin: auto;
+    color: rgb(156, 162, 168);
+}
+
+.wp-logo{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    bottom: 2px;
+    right: 0;
+}
+
+.ig-logo{
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    bottom: 0;
+    right: 0;
+}
