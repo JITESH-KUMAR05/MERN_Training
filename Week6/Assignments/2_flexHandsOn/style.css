@@ -1,0 +1,40 @@
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: 0;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(54, 50, 50);
+    padding: 2rem;
+    color: white;
+    padding: 20px;
+}
+.hyperlinks{
+    display: flex;
+    width: 500px;
+    padding: 10px;
+    justify-content: space-between;
+    list-style: none;
+    margin-right: 40px;
+    
+}
+a{
+    text-decoration: none;
+    color: white;
+
+}
+.logo{
+    width: 50px;
+    height: 50px;
+    margin-left: 40px;
+    border-radius: 50%;
+}
+a:hover{
+    color: red;
+}
