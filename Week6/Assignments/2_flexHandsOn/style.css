@@ -4,6 +4,10 @@
     padding: 0;
     margin: 0;
     box-sizing: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+body{
+    background-color: rgba(222, 226, 230, 0.662);
 }
 
 nav{
@@ -14,6 +18,7 @@ nav{
     padding: 2rem;
     color: white;
     padding: 20px;
+    /* position: fixed; */
 }
 .hyperlinks{
     display: flex;
@@ -37,4 +42,65 @@ a{
 }
 a:hover{
     color: red;
+    cursor: pointer;
+}
+
+
+
+/* main styles */
+
+.main{
+    margin: 10px 100px;
+    text-align: center;
+    
+}
+
+.row{
+    display: flex;
+    justify-content: space-around;
+    gap: 5px;
+    margin-top: 15px;
+}
+.card{
+    width: 350px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 1px 1px 10px grey;
+    border-radius: 10px;
+    background-color: antiquewhite;
+}
+
+.card img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.card p{
+    color: rgb(139, 135, 131);
+}
+
+.card button{
+    border: none;
+    background-color: blueviolet;
+    color: white;
+    padding: 5px 10px ;
+    border-radius: 20px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+/* footer styles */
+
+footer{
+    background-color: rgb(54, 50, 50);
+    padding: 5rem;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.footer-links{
+    list-style: none;
 }
