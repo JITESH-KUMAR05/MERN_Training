@@ -49,3 +49,10 @@ The basic syntax of a media query is as follows:
   /* CSS rules to apply when the condition is true */
 }
 ```
+
+
+# Layouts
+1. Flexbox: A one-dimensional layout model that allows you to arrange items in a row or column. It provides powerful alignment and distribution capabilities, making it easier to create flexible and responsive layouts.
+2. CSS Grid: A two-dimensional layout system that allows you to create complex grid-based layouts. It provides a more powerful and flexible way to design web pages, allowing you to control both rows and columns simultaneously.
+
+## Flexbox 
