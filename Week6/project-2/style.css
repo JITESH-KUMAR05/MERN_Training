@@ -1,0 +1,45 @@
+/* 
+possible values of positions 
+static
+relative
+absolute
+fixed
+sticky
+*/
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.parent{
+    width: 700px;
+    height: 700px;
+    margin: auto;
+    margin-top: 150px;
+    border: 2px solid grey;
+    position: relative;
+}
+
+.child{
+    width: 100px;
+    height: 100px;
+}
+
+.child1{
+    background-color: rgb(29, 87, 175);
+    position: absolute;
+    /* position: relative; */
+    left: 200px;
+}
+
+.child2{
+    background-color: red;
+    position: sticky;
+    top: 100px;
+}
+
+.child3{
+    background-color: green;
+    position: fixed;
+}
