@@ -56,3 +56,11 @@ The basic syntax of a media query is as follows:
 2. CSS Grid: A two-dimensional layout system that allows you to create complex grid-based layouts. It provides a more powerful and flexible way to design web pages, allowing you to control both rows and columns simultaneously.
 
 ## Flexbox 
+
+
+
+## CSS Grid
+CSS Grid is a powerful layout system that allows you to create complex grid-based layouts. It provides a more powerful and flexible way to design web pages, allowing you to control both rows and columns simultaneously. With CSS Grid, you can define grid containers and grid items, and specify how they should be arranged within the grid.
+
+### the problem which grid solves
+Before CSS Grid, creating complex layouts often required using a combination of floats, positioning, and other techniques, which could be cumbersome and difficult to maintain. CSS Grid simplifies this process by providing a more intuitive and efficient way to create grid-based layouts. With CSS Grid, you can easily define rows and columns, and specify how grid items should be placed within the grid, making it easier to create responsive and flexible designs. It also allows for more control over the layout, such as the ability to span items across multiple rows or columns, and to create nested grids for even more complex layouts. Overall, CSS Grid is a powerful tool that helps developers create modern, responsive web designs with greater ease and flexibility.
