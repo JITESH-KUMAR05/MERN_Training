@@ -51,3 +51,34 @@
     border-radius: 20px;
     color: white;
 }
+
+.section2{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.sec2-left{
+    width: 55%;
+    /* padding: 30px 50px; */
+}
+
+.sec2-left h1{
+    font-size: 3rem;
+    color: #1c4792;
+}
+.sec2-content{
+    width: 80%;
+    margin: auto;
+    /* padding: 40px 20px; */
+}
+.sec2-content p{
+    width: 70%;
+    /* padding: 30px 0px; */
+}
+.sec2-right{
+    width: 45%;
+    background-color: #EDEDED;
+    height: 500px;
+}
