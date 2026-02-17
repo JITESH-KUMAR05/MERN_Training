@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+}
+
+.section{
+    width: 99vw;
+}
+
+.section1{
+    width: 100%;
+    text-align: center;
+}
+
+.section1 img{
+    width: 100%;
+    height: 750px;
+    object-fit: cover;
+    
+}
+
+.first-h1{
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    width: 40%;
+    font-size: 3rem;
+    color: white;
+}
+
+.second-h1{
+    position: absolute;
+    top: 35%;
+    left: 30%;
+    width: 40%;
+    font-size: 3rem;
+    color: white;
+}
+
+.section1 button{
+    position: absolute;
+    top: 54%;
+    left: 42%;
+    width: 15%;
+    background-color: #FF9500;
+    font-size: 1rem;
+    padding: 20px 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    color: white;
+}
