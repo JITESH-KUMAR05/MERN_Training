@@ -64,3 +64,20 @@ CSS Grid is a powerful layout system that allows you to create complex grid-base
 
 ### the problem which grid solves
 Before CSS Grid, creating complex layouts often required using a combination of floats, positioning, and other techniques, which could be cumbersome and difficult to maintain. CSS Grid simplifies this process by providing a more intuitive and efficient way to create grid-based layouts. With CSS Grid, you can easily define rows and columns, and specify how grid items should be placed within the grid, making it easier to create responsive and flexible designs. It also allows for more control over the layout, such as the ability to span items across multiple rows or columns, and to create nested grids for even more complex layouts. Overall, CSS Grid is a powerful tool that helps developers create modern, responsive web designs with greater ease and flexibility.
+
+
+## Steps for tailwind css setup
+1. Install Tailwind CSS via npm:
+```bash
+npm install -D tailwindcss @tailwindcss/cli
+```
+2. create a style.css file and add @import statement to include Tailwind's base, components, and utilities styles:
+```css
+@import "tailwindcss"
+```
+3. Run the watch command "npx @tailwindcss/cli -i ./style.css -o ./output.css --watch" to generate the output CSS file and watch for changes in the style.css file.
+4. Include the generated output.css file in your HTML file:
+```html
+<link href="./output.css" rel="stylesheet">
+```
+
