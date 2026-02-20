@@ -36,7 +36,6 @@ userApp.post('/users',async(req,res)=>{
 })
 
 // Login
-
 userApp.post("/auth",async(req,res)=>{
     // let the user credentials from the request
     let {name,password} = req.body;
