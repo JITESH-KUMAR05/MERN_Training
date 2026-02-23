@@ -96,3 +96,12 @@
 - returns a react element(mandatory)
     - a react element is a JavaScript object that describes what we want to see on the screen. it is created using the React.createElement() method and it is used to create the virtual DOM. it is a very important concept in ReactJS and it is widely used in web development.
 
+
+### Component Hierarchy
+- App component (root component)
+    - Header component
+    - Main component
+        - Article component
+        - Sidebar component
+    - Footer component
+
