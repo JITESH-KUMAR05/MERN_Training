@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css"
 function App(){
   // state
@@ -15,7 +16,21 @@ function App(){
 
   const test2 = (a) => {
     console.log(`test 2 is called and a is ${a}`)
+    
   }
+
+
+  let [cntVal, setCntVal] = useState(0)
+
+  const incrementCnt = () => {
+    console.log(cntVal)
+    setCntVal(cntVal+1);
+  }
+
+  const resetCnt = () => {
+    setCntVal(0);
+  }
+
   // return a react element
 
   return(
@@ -34,12 +49,16 @@ function App(){
 
       {/* diplay the marks */}
       {
-        marks.map((mark,index) => <h2 className="text-red-600" key={index}>{mark}</h2>)
+        marks.map((mark,index) => <h2 className="text-red-600 bg-green-300 rounded-2xl m-2" key={index}>{mark}</h2>)
       }
 
+      <h2 className=""> No of Clicks: {cntVal}</h2>
 
-      <button onClick={test1} className="bg-amber-500 text-shadow-indigo-100 px-5 py-2">click</button>
-      <button onClick={ () => test2(100)} className="bg-amber-500 text-shadow-indigo-100 px-5 py-2">click</button>
+      <button onClick={incrementCnt} className="bg-amber-500 text-shadow-indigo-100 px-5 py-2 mr-3">Increase Count</button>
+
+      <button onClick={test1} className="bg-amber-500 text-shadow-indigo-100 px-5 py-2 mr-3">click</button>
+      <button onClick={ () => test2(100)} className="bg-amber-500 text-shadow-indigo-100 px-5 py-2 mr-3">click</button>
+      <button onClick={resetCnt} className="bg-amber-500 text-shadow-indigo-100 px-5 py-2 ">Reset Count</button>
     </div>
   )
 }
