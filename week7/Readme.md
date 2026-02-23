@@ -105,3 +105,91 @@
         - Sidebar component
     - Footer component
 
+
+## Phase 2 : State and Interactivity
+1. useState hook 
+2. Event handling
+3. Form validation & submission
+4. Lifting state up
+
+### useState hook
+- useState is a hook that allows us to add state to our functional components. it returns an array with two elements, the first element is the current state and the second element is a function that allows us to update the state. it is a very important hook in ReactJS and it is widely used in web development.
+```javascript
+import React, { useState } from 'react';
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
+
+- when the state do not depend on the previous value then we can use the simple form of the setState function, but when the state depend on the previous value then we should use the functional form of the setState function to avoid any bugs in the code. for example:
+```javascript
+import React, { useState } from 'react';
+function Counter() {
+    const [count, setCount] = useState(0);
+    
+    return (
+        <div>
+        <p>You clicked {count} times</p>
+        <button onClick={() => setCount(prevCount => prevCount + 1)}>
+            Click me
+        </button>
+        </div>
+    );
+    }
+```
+- in the above example we are using the functional form of the setState function because the new state depends on the previous state. if we use the simple form of the setState function then we will get a bug in the code because the new state will not be updated correctly.
+
+### now with objects and arrays
+* Arrays
+```javascript
+import React, { useState } from 'react';
+function TodoList() {
+  const [todos, setTodos] = useState([]);
+
+  const addTodo = (todo) => {
+    // todos.push(todo); // this will mutate the state directly and it is not recommended
+    setTodos([...todos, todo]); // we are creating a new array with the new todo and the previous todos to avoid mutating the state directly
+  };
+
+  return (
+    <div>
+      <button onClick={() => addTodo('New Todo')}>Add Todo</button>
+      <ul>
+        {todos.map((todo, index) => (
+          <li key={index}>{todo}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+* Objects
+```javascript
+import React, { useState } from 'react';
+function UserProfile() {
+  const [user, setUser] = useState({ name: 'John', age: 30 });
+
+  const updateName = (newName) => {
+    // user.name = newName; // this will mutate the state directly and it is not recommended
+    setUser({ ...user, name: newName }); // we are creating a new object with the new name and the previous properties to avoid mutating the state directly
+  };
+
+  return (
+    <div>
+      <p>Name: {user.name}</p>
+      <p>Age: {user.age}</p>
+      <button onClick={() => updateName('Jane')}>Update Name</button>
+    </div>
+  );
+}
+```
