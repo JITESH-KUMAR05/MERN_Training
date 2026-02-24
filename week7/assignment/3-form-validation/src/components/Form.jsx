@@ -4,7 +4,7 @@ import {useState} from "react"
 
 const Form = () => {
 
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const {register, handleSubmit, setError, formState: {errors}} = useForm();
     const [user, setuser] = useState([])
     const onSubmit = (data) =>{
         let dob = data.dob;
@@ -12,13 +12,21 @@ const Form = () => {
         let year = dob.substr(0,4)-'0';
         // console.log(typeof(year))
         if(year<2020){
-            console.log("cannot push this")
+            // console.log("cannot push this")
+            setError("dob",{
+                type:"manual",
+                message:"the date not after 2020"
+            })
             return;
         }
         let newUser = data;
         let modifiedUser = [...user];
         modifiedUser.push(newUser)
         setuser(modifiedUser)
+    }
+    const onSubmit2 = (data) =>{
+        let dateObj = data.valueAsDate;
+        console.log(dateObj)
     }
   return (
     
@@ -29,7 +37,22 @@ const Form = () => {
         {
             errors.firstname?.type === "required" && <p className="text-red-500">firstname is required</p>
         }
+        {
+            errors.firstname?.type === "minLength" && <p className="text-red-500">minimum length is 4</p>
+        }
+        {
+            errors.firstname?.type === "maxLength" && <p className="text-red-500">maximum length is 6</p>
+        }
         <input {...register("lastname",{required:true, minLength:4,maxLength:6})} className="border-2 w-[60%] bg-lime-400 rounded-2xl" type="text" placeholder="Enter LastName" />
+        {
+            errors.lastname?.type === "required" && <p className="text-red-500">firstname is required</p>
+        }
+        {
+            errors.lastname?.type === "minLength" && <p className="text-red-500">minimum length is 4</p>
+        }
+        {
+            errors.lastname?.type === "maxLength" && <p className="text-red-500">maximum length is 6</p>
+        }
         <input {...register("email",{required:true})} className="border-2 w-[60%] bg-lime-400 rounded-2xl" type="email" placeholder="Enter Email" />
         {
             errors.email?.type === "required" && <p className="text-red-500">email is required</p>
@@ -37,6 +60,9 @@ const Form = () => {
         <input {...register("dob",{required:true})} className="border-2 w-[60%] bg-lime-400 rounded-2xl" type="date" placeholder="Enter DOB" />
         {
             errors.dob?.type === "required" && <p className="text-red-500">dob is required</p>
+        }
+        {
+            errors.dob?.type === "manual" && <p className="text-red-500">{errors.dob.message}</p>
         }
         <button className="bg-amber-400 w-[20%] py-3" type="submit">Add New User</button>
       </form>

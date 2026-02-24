@@ -256,3 +256,67 @@ function LoginForm() {
   );
 }
 ```
+
+## Lifting State Up
+- Lifting state up is a technique in React where we move the state from a child component to a parent component so that the state can be shared between multiple child components. this is useful when we have multiple components that need to access the same state and we want to avoid prop drilling. it is a very common technique in React and it is widely used in web development.
+- this technique can be used only when the level of components are less than or equal to 1.
+- if we have more than 1 level of components then we should use a state management library like Redux, etc. to manage the state of the application more efficiently and to avoid prop drilling.
+
+### we used react-hook-form
+- react-hook-form is a library that provides a lot of methods to handle form validation and submission more efficiently. it is a very popular library and it is widely used in web development. it is better than Formik because it is more lightweight and it is easier to use. it also provides better performance and it is more flexible than Formik. it is a very popular library and it is widely used in web development.
+- register
+- handleSubmit
+- formState
+- reset
+- setError
+
+
+## useEffect Hook
+- 
+
+### Side Effects in React
+1. a component can render initially before displaying content.
+2. if the component is about to make an API request, it should wait until the initial render is complete before making the request.
+3. if both initial rendering and API request happen together, it leads to unexpected behavior and performance issues.
+
+* situations
+1. No dependency array: the effect runs after every render.
+```javascript
+import React, { useEffect } from 'react';
+function MyComponent() {
+    useEffect(() => {
+        console.log('Effect runs after every render');
+    });
+    
+    return <div>My Component</div>;
+    }
+```
+2. Empty dependency array: the effect runs only once after the initial render.
+```javascript
+import React, { useEffect } from 'react';
+function MyComponent() {
+    useEffect(() => {
+        console.log('Effect runs only once after the initial render');
+    }, []);
+    
+    return <div>My Component</div>;
+    }
+```
+3. Dependency array with variables.state: the effect runs after the initial render and whenever any of the specified variables/state change.
+```javascript
+import React, { useEffect, useState } from 'react';
+function MyComponent() {
+    const [count, setCount] = useState(0);
+    
+    useEffect(() => {
+        console.log('Effect runs after the initial render and whenever count changes');
+    }, [count]);
+    
+    return (
+        <div>
+        <p>Count: {count}</p>
+        <button onClick={() => setCount(count + 1)}>Increment</button>
+        </div>
+    );
+    }
+```
