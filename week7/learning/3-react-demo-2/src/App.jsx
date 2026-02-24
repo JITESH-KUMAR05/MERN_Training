@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import Test1 from "./components/Test1";
 import FormDemo from "./components/FormDemo";
+import TaskManager from "./components/TaskManager";
 
 // update marks state by inserting elements at the beginning,ending and in between with index
 // delete marks from the end of the array
@@ -123,6 +124,8 @@ function App() {
         <h2>Form Demo</h2>
         
         <FormDemo />
+
+        <TaskManager />
       </div>
     </div>
   );

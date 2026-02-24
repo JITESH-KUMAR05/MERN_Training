@@ -8,8 +8,8 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div>
-      {/* <h1 className="text-4xl text-blue-400">Hello</h1> */}
+    <div className='p-10'>
+      <h1 className="text-4xl text-center text-violet-500">Task Manager</h1>
       <Form />
     </div>
   )
