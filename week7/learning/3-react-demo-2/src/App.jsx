@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import Test1 from "./components/Test1";
+import FormDemo from "./components/FormDemo";
 
 // update marks state by inserting elements at the beginning,ending and in between with index
 // delete marks from the end of the array
@@ -8,6 +9,10 @@ import Test1 from "./components/Test1";
 function App() {
   let [cntVal, setCntVal] = useState(0);
   const [marks, setMarks] = useState([10, 20]);
+  const [user, setuser] = useState({
+    name:"jk",
+    email:"jk@gmail.com"
+  })
   const incrementCnt = () => {
     console.log(cntVal);
     setCntVal(cntVal + 1);
@@ -55,6 +60,15 @@ function App() {
     setMarks(newMarks)
   }
 
+  const updateUser = () => {
+    setuser({...user,city : "hyd"});
+  }
+
+  const deleteProp = () => {
+    let {city, ...rest} = user;
+    setuser(rest);
+  }
+
   return (
     <div>
       <div className="text-center">
@@ -92,7 +106,23 @@ function App() {
         <button onClick={() => addMarkAtId(50,1)} className="bg-amber-500 text-shadow-indigo-100 px-5 py-2 mr-3">Add mark in between</button>
         <button onClick={deleteMarksAtEnd} className="bg-amber-500 text-shadow-indigo-100 px-5 py-2 mr-3">delete mark at end</button>
         <button onClick={deleteMarksAtStart} className="bg-amber-500 text-shadow-indigo-100 px-5 py-2 mr-3">delete mark at start</button>
+        <button onClick={() => deleteMarksAtId(1)} className="bg-amber-500 text-shadow-indigo-100 px-5 py-2 mr-3">delete mark at Id</button>
         
+
+        {
+          Object.entries(user).map(([key,val],index) => {
+            return (
+              <h2 key={index}>{key} : {val} </h2>
+            )
+          })
+        }
+
+        <button onClick={updateUser} className="bg-amber-500 text-shadow-indigo-100 px-5 py-2 mr-3">Update user</button>
+        <button onClick={() => deleteProp()} className="bg-amber-500 text-shadow-indigo-100 px-5 py-2 mr-3">Update user</button>
+
+        <h2>Form Demo</h2>
+        
+        <FormDemo />
       </div>
     </div>
   );
