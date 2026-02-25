@@ -3,14 +3,14 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Form from './components/Form'
+import TaskManager from './components/TaskManager'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <div className='p-10'>
-      <h1 className="text-4xl text-center text-violet-500">Task Manager</h1>
-      <Form />
+      <TaskManager />
     </div>
   )
 }
