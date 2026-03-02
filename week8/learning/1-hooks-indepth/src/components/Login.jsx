@@ -1,0 +1,12 @@
+import React from 'react'
+
+const Login = () => {
+  return (
+    <div className=''>
+      <h1 className='text-3xl text-center font-bold'>Welcome to Login Page</h1>
+      <p className='p-3'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore itaque eos alias quam, modi in repellendus sed mollitia reprehenderit, quidem consectetur provident hic aperiam blanditiis laborum nihil ipsum distinctio aliquid, est sapiente! Autem molestiae suscipit nihil reprehenderit esse, iusto voluptatem vero nobis aliquam magni porro itaque impedit! Voluptatibus, fugit autem officia delectus distinctio consectetur voluptatem harum ratione reiciendis, sit assumenda. At vitae neque sequi beatae quos, aut iure impedit. In cum placeat dolores sit similique itaque, ad reprehenderit praesentium quos repellendus fugit consectetur commodi beatae! Soluta laborum, ducimus necessitatibus, reprehenderit quam saepe nesciunt neque ullam sapiente earum iure atque vero deserunt iste optio, cum temporibus! Hic accusamus ut dolores id et ipsum aliquid rem placeat illo suscipit. Iure nostrum, porro, et cum quis suscipit sed ex animi repellendus amet, id tempora nihil repellat esse voluptas veritatis doloribus dolores doloremque in itaque sit nesciunt! Minus quod ab minima tempora quidem quisquam doloremque cum culpa nam quo maxime aliquid quam, autem iste quia, obcaecati distinctio? Ullam aperiam eos officia mollitia nulla dolorum harum repellat iusto assumenda libero nobis esse officiis saepe, aut cumque consequuntur distinctio provident magni repudiandae dolore tempore obcaecati laborum soluta. Obcaecati quo impedit quibusdam modi eius repudiandae, assumenda fugit et earum perspiciatis quos. Non magnam, repellat voluptatum optio, nulla accusantium iure veritatis consequuntur repellendus tempora iste neque amet officia, at minima sequi! Officia expedita doloremque pariatur ipsum odio deserunt in ut delectus hic deleniti aperiam sequi fugit odit rerum dolores nulla, iste exercitationem, unde et harum explicabo magnam itaque id? Cumque, deleniti! Eos non eius reprehenderit labore ab similique, molestias voluptates. Architecto, illum autem, fuga a laudantium ullam dolore velit iure praesentium tempora nisi? Ab doloremque, repudiandae ad adipisci quae rerum voluptas delectus facilis omnis molestiae. Numquam maxime labore minus. Similique libero porro nemo illo eos dolores eius velit!</p>
+    </div>
+  )
+}
+
+export default Login
