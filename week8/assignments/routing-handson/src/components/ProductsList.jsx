@@ -18,7 +18,7 @@ const ProductsList = () => {
     }
 
     const searchItem = (data)=>{
-        // console.log(data?.item);
+        // console.log(data);
         let prd = data?.item;
         if(prd.length === 0) return;
         let newObj = products.filter((obj) => obj.category===prd);
