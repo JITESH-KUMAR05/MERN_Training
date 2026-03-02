@@ -18,10 +18,17 @@ const ProductsList = () => {
     }
 
     const searchItem = (data)=>{
-        // console.log(data);
-        let prd = data?.item;
-        if(prd.length === 0) return;
-        let newObj = products.filter((obj) => obj.category===prd);
+        console.log(data);
+        let searchWith = data?.searchWith;
+        let type = data?.type;
+        if(searchWith.length === 0) return;
+        let newObj;
+        if(type === "title"){
+            newObj = products.filter((obj)=> obj.title === searchWith);
+
+        }else if(type === "category"){
+            newObj = products.filter((obj) => obj.category === searchWith);
+        }
         setProducts(newObj);
     }
 
@@ -60,7 +67,11 @@ const ProductsList = () => {
   return (
     <div>
         <form onSubmit={handleSubmit(searchItem)} className='w-full text-center mt-2'>
-            <input {...register("item")} className='bg-gray-300 w-72 px-6 py-2 mr-3' type="text" placeholder='Search here' />
+            <input {...register("searchWith")} className='bg-gray-300 w-72 px-6 py-2 mr-3' type="text" placeholder='Search here' />
+            <select {...register("type")} id="">
+                <option value="category">Category</option>
+                <option value="title">title</option>
+            </select>
             <button type='submit'>search</button>
         </form>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 p-5'>
