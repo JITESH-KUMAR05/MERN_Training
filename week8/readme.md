@@ -32,3 +32,17 @@
 * it is useful for managing state that needs to be shared across multiple components, such as user authentication status, theme settings, or language preferences.
 * it solved the problem of prop drilling by providing a way to share state directly between components without having to pass props through intermediate components.
 * it is a good choice for small to medium-sized applications where the state management needs are not too complex.
+
+### Steps to use Context API:
+1. Create a context object
+2. Every context object has a context provider and a context consumer.
+3. context provider is used to provide the state to the components that need it.
+4. context consumer is used to consume the state provided by the context provider.
+5. a component can consume the context value using the useContext hook.
+
+- we will create a new folder in src called "context" and inside that we will create a file called "CounterContext.js" where we will create our context and provider. Then we will use the provider in our App component to wrap the components that need access to the counter state. Finally, we will use the consumer in the components that need to access the counter state.
+
+- we can call this context object like a pipeline that allows us to pass data from one component to another without having to pass props through multiple levels of components. This makes our code cleaner and easier to maintain.
+- it's not correct to say that it is a global state, it is a state that is shared across multiple components but it is not global in the sense that it is not accessible from anywhere in the application. It is only accessible to the components that are wrapped by the context provider.
+
+#### for the aboive one go to /learding/2-context-demo and check the code there. We have created a counter context and used it in our App component to manage the counter state across multiple components.

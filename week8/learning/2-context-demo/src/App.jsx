@@ -7,14 +7,16 @@ import B from './components/B'
 import C from './components/C'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  
+  console.log("app")
   return (
-    <div className='flex justify-evenly text-2xl p-5'>
+    <div className='flex justify-evenly mt-10 text-2xl p-5'>
       
-        <A />
-        <B />
-        <C />
+        <A    />
+        <B  />
+        <C  />
+
+        
       
     </div>
   )
