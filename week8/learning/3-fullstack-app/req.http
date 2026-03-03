@@ -1,0 +1,21 @@
+### create user
+POST http://localhost:3000/user-api/users
+Content-Type: application/json
+
+{
+    "name": "rahul",
+    "email": "rahul@gmail.com",
+    "dateOfBirth": "2006-01-06",
+    "phone": "9876543210"
+}
+### read all users
+GET http://localhost:3000/user-api/users
+
+### read a user by id
+GET http://localhost:3000/user-api/users/69a6943c8e361040b0eb21f9
+
+### delete a user by id (soft delete)
+DELETE http://localhost:3000/user-api/users/69a6943c8e361040b0eb21f9
+
+### Activate a user by id
+PATCH http://localhost:3000/user-api/users/69a6943c8e361040b0eb21f9
