@@ -46,3 +46,10 @@
 - it's not correct to say that it is a global state, it is a state that is shared across multiple components but it is not global in the sense that it is not accessible from anywhere in the application. It is only accessible to the components that are wrapped by the context provider.
 
 #### for the aboive one go to /learding/2-context-demo and check the code there. We have created a counter context and used it in our App component to manage the counter state across multiple components.
+
+## Note: Every context should have only one state, as having multiple states can cause a lot of unnecessary re-renders and can make the application slow. It is better to create multiple contexts for different states rather than having one context with multiple states. This way, we can manage the state more efficiently and avoid unnecessary re-renders.
+
+
+# CORS (Cross-Origin Resource Sharing)
+* this is a security feature implemented by web browsers to prevent malicious websites from making unauthorized requests to other websites.
+* it allows servers to specify which origins are allowed to access their resources and which HTTP methods are allowed for those origins.
