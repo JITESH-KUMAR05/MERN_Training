@@ -153,3 +153,5 @@ test1(function(){
 
 # name of func,how many params,what does it return
 * this is very important for understanding any function
+
+* So please read the docs carefully and understand the function before using it.
