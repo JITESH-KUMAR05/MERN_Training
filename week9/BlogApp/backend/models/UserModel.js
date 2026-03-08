@@ -4,6 +4,7 @@ import validator from 'validator';
 const userSchema = new Schema({
     firstName:{
         type:String,
+        minLength:[3,"minimum length is 3"],
         required:[true,"firstName is required"]
     },
     lastName:{

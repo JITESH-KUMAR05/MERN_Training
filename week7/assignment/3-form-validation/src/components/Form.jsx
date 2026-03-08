@@ -29,7 +29,7 @@ const Form = () => {
         console.log(dateObj)
     }
   return (
-    
+     
     <div className="w-full text-center">
       <h1>User Registration Form</h1>
       <form className="flex flex-col p-5 gap-3 justify-center items-center" onSubmit={handleSubmit(onSubmit)}>
