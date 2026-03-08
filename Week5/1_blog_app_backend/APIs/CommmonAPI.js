@@ -19,7 +19,7 @@ commonRouter.post("/login", async (req, res) => {
     secure: false,
   });
   // send res
-  res.status(200).json({ message: "Author login seccess", payload: user });
+  res.status(200).json({ message: "login seccess", payload: user });
 });
 // logout
 
@@ -46,7 +46,7 @@ commonRouter.put("/change-password",verifyToken,async(req,res)=>{
     if(!user){
       return res.status(401).json({message:"no user with this email"})
     }
-    console.log(user)
+    // console.log(user)
     
     let comparePass = await compare(user.password,oldPassword)
     if(!comparePass){

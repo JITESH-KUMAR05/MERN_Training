@@ -1,0 +1,58 @@
+// building the mini express application
+import express from "express";
+import { register } from "../services/AuthServices.js";
+import req from "express/lib/request.js";
+import { verifyToken } from "../middlewares/verifyToken.js";
+import { validUSer } from "../middlewares/validUser.js";
+import { ArticleModel } from "../models/ArticleModel.js";
+
+export const userRoute = express.Router();
+
+// register
+userRoute.post("/users",async(req,res)=>{
+    let userObj = req.body;
+    // console.log(userObj);
+    let createdObj = await register({...userObj,role:"USER"});
+    res.status(201).json({
+        message:"user created",
+        success:true,
+        payload:createdObj
+    })    
+})
+
+// read all articles
+userRoute.get("/user/:uid/articles", verifyToken, validUSer, async(req,res) => {
+    let allArticles = await ArticleModel.find({isArticleActive:true}).populate("author comments.user");
+
+    res.status(200).json({
+        message:"All Articles",
+        payload: allArticles
+    });
+})
+
+// adding one comment on an article
+userRoute.put("/user/:uid/article/:aid",verifyToken,validUSer, async(req,res) => {
+    let {uid,aid} = req.params;
+    // console.log(aid)
+    // we have already checked if it's a valid user or not now we just need to find out if the article is present or not
+    let articleofDB = await ArticleModel.findOne({_id:aid,isArticleActive:true});
+    // let articleofDB = await ArticleModel.find();
+    console.log(articleofDB)
+    if(!articleofDB){
+        return res.status(404).json({
+            message:"Article not found"
+        })
+    }
+
+    // now we need to push the comment 
+    let newArticle = await ArticleModel.findOneAndUpdate(
+        {_id:aid,isArticleActive:true},
+        {$push:{"comments":{user:uid,comment:req.body.comment}}},
+        {returnDocument:"after"}
+    ).populate("comments.user author")
+
+    res.status(200).json({
+        message:"comment added",
+        payload:newArticle
+    })
+})
