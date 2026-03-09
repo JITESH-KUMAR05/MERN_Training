@@ -33,7 +33,7 @@ export const verifyToken = (...allowedRoles) => {
       req.user = decodedToken;
 
       next();
-    } catch (error) {
+    } catch (err) {
       // jwt.verify throws if token is invalid/expired
       if (err.name === "TokenExpiredError") {
         return res

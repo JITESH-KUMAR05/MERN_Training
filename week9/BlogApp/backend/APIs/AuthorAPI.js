@@ -19,8 +19,9 @@ authorRoute.post("/users",async(req,res)=>{
 // create article (private or protected)
 authorRoute.post("/articles",verifyToken("AUTHOR"),async(req,res)=>{
     // get the article from req
+    let author = req.user.userId;
     let articleObj = req.body;
-   
+    articleObj.author = author;
     // create the article document 
     let articleDoc = new ArticleModel(articleObj);
     // save the article
@@ -75,9 +76,10 @@ authorRoute.get("/articles",verifyToken("AUTHOR"),async(req,res)=>{
 // })
 
 // edit article by author (sirs version) (private or protected)
-authorRoute.put("/articles",verifyToken, validAuthor, async(req,res)=>{
+authorRoute.put("/articles",verifyToken("AUTHOR"), async(req,res)=>{
     // get the modified article from req
-    let {articleId,author,category,title,content} = req.body;
+    let {articleId,category,title,content} = req.body;
+    let author = req.user.userId;
     // find and update the article
     let articleOfDB = await ArticleModel.findOne({_id:articleId,author:author});
     if(!articleOfDB){
@@ -98,10 +100,10 @@ authorRoute.put("/articles",verifyToken, validAuthor, async(req,res)=>{
 })
 
 // delete (soft delete)  (private or protected)
-authorRoute.patch('/author/:authorid/article/:articleid',verifyToken("AUTHOR"),validAuthor,async(req,res)=>{
+authorRoute.patch('/article/:articleid/status',verifyToken("AUTHOR"),async(req,res)=>{
     // get the article id
     let aid = req.params.articleid;
-    let author = req.params.authorid;
+    let author = req.user.userId;
     // find the article
     let articleOfDB = await ArticleModel.findOne({_id:aid,author:author});
     if(!articleOfDB){

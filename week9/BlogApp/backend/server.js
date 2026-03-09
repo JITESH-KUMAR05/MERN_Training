@@ -40,7 +40,6 @@ app.use("/user-api",userRoute);
 app.use("/common-api",commonRoute);
 app.use('/admin-api',adminRoute);
 app.use('/author-api',authorRoute);
-app.use('/common-api',commonRoute)
 
 
 
@@ -90,6 +89,11 @@ app.use((err,req,res,next)=>{
       details: err.message
     });
   }
+  if (err.status) {
+  return res.status(err.status).json({
+    message: err.message,
+  });
+}
   res.status(500).json({
     message: "Internal Server Error",
     error: err.message,
