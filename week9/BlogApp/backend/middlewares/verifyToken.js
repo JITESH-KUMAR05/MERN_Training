@@ -2,7 +2,8 @@
 import jwt from "jsonwebtoken"
 import { UserModel } from "../models/UserModel.js";
 
-export const verifyToken = async(req,res,next) => {
+export const verifyToken = (...allowedRoles) => {
+    return async(req,res,next) => {
     // read the token
     let token = req.cookies?.token;
     if(!token){
@@ -13,16 +14,22 @@ export const verifyToken = async(req,res,next) => {
     // decode the token
     let decodedToken = jwt.verify(token,process.env.JWT_SECRET)
 
-    // console.log(decodedToken)
-    let user = await UserModel.findById(decodedToken.userId)
-
-    if(!user){
-        return res.status(401).json({
-            message:"user no longer exists!"
-        });
+    // check if the role is allowed or not
+    if(!allowedRoles.includes(decodedToken.role)){
+        return res.status(403).json({message:"Forbidden. you don't have access"})
     }
+
+    // console.log(decodedToken)
+    // let user = await UserModel.findById(decodedToken.userId)
+
+    // if(!user){
+    //     return res.status(401).json({
+    //         message:"user no longer exists!"
+    //     });
+    // }
 
     req.user = decodedToken;
 
     next();
+}
 }

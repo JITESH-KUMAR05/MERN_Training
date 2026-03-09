@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 
 const Register = () => {
     const {register, handleSubmit, formState:{errors}}  = useForm();
-
+    // need to make an api call to the backend register api
     const submitHandler = (data) => {
         console.log(data)
     }

@@ -6,7 +6,7 @@ export const validUSer = async(req,res,next)=>{
     // the user can try login or register
     // so we need to get the id of the user and then we can check
     let uid = req.params?.uid 
-    if(uid === undefined){
+    if(!uid){
         return res.status.json({
             message:"user id is undefined"
         })

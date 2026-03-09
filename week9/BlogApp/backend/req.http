@@ -20,22 +20,29 @@ Content-Type: application/json
 }
 
 
-### REading all articles from user side
-GET http://localhost:4000/user-api/user/698965e1075606f41d6fcf75/articles
+### REading all articles from user side (OLD Way)
+# GET http://localhost:4000/user-api/user/698965e1075606f41d6fcf75/articles
 
+### Reading all articles from user side (NEW Way)
+GET http://localhost:4000/user-api/articles
 
-### Commenting on an article
-PUT http://localhost:4000/user-api/user/698965e1075606f41d6fcf75/article/69898278c8c9f32745bfada5
+### Commenting on an article (OLD Way)
+# PUT http://localhost:4000/user-api/user/698965e1075606f41d6fcf75/article/69898278c8c9f32745bfada5
+# Content-Type: application/json
+
+# {
+#     "comment": "This is a comment on the article."
+# }
+
+### Commenting on an article (NEW Way)
+PUT http://localhost:4000/user-api/articles
 Content-Type: application/json
 
 {
+    "user": "698965e1075606f41d6fcf75",
+    "articleId": "69897e0dd3b67969646b04f3",
     "comment": "This is a comment on the article."
 }
-
-
-
-
-
 
 
 ### Author Register
@@ -46,7 +53,7 @@ Content-Type: application/json
     "firstName": "test2",
     "lastName": "author",
     "email": "test2.author@example.com",
-    "password": "password123",
+    "password": "Password123",
     "profileImageUrl": "https://example.com/profile-picture.jpg"
 }
 
@@ -72,8 +79,11 @@ Content-Type: application/json
 
 
 
-### Read all articles by an author
+### Read all articles by an author (OLD Way)
 GET http://localhost:4000/author-api/articles/69896622075606f41d6fcf79
+
+### Read all articles by an author (NEW Way)
+GET http://localhost:4000/author-api/articles
 
 ### Update an article (AUTHOR)
 PUT http://localhost:4000/author-api/articles
@@ -88,7 +98,7 @@ Content-Type: application/json
 }
 
 ### Soft delete an article (AUTHOR)
-PUT http://localhost:4000/author-api/author/69896622075606f41d6fcf79/article/69ad4938b13a6b3af654a655
+PATCH http://localhost:4000/author-api/author/69896622075606f41d6fcf79/article/69897e0dd3b67969646b04f3
 
 
 

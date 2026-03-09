@@ -1,6 +1,8 @@
 import {UserModel} from "../models/UserModel.js"
 import jwt from "jsonwebtoken"
 import {hash,compare} from "bcryptjs"
+
+
 export const register = async(userObj) => {
     // creating the document from this object
     let userDoc = new UserModel(userObj);
