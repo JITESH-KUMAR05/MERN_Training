@@ -58,6 +58,9 @@ userRoute.get("/articles", verifyToken("USER"), async(req,res) => {
 //     })
 // })
 
+
+
+
 // adding one comment on an article
 userRoute.put("/articles",verifyToken("USER"), async(req,res) => {
     let {user,articleId, comment} = req.body;
