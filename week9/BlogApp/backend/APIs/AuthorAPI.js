@@ -31,16 +31,30 @@ authorRoute.post("/articles",verifyToken("AUTHOR"),async(req,res)=>{
 
 
 
-// read articles (private or protected)
-authorRoute.get("/articles/:authorid",verifyToken("AUTHOR"),async(req,res)=>{
+// read articles (private or protected)  --> old way
+// authorRoute.get("/articles/:authorid",verifyToken("AUTHOR"),async(req,res)=>{
+//     // get the author id
+//     let authorId = req.params.authorid;
+   
+//     // read the articles by the author
+//     let allArticles = await ArticleModel.find({author:authorId,isArticleActive:true}).populate("author comments.user", "firstName lastName");
+//     // res
+//     res.status(200).json({message:"author articles",payload:allArticles})
+// })
+
+
+authorRoute.get("/articles",verifyToken("AUTHOR"),async(req,res)=>{
     // get the author id
-    let authorId = req.params.authorid;
+    let authorId = req.user.userId;
    
     // read the articles by the author
     let allArticles = await ArticleModel.find({author:authorId,isArticleActive:true}).populate("author comments.user", "firstName lastName");
     // res
     res.status(200).json({message:"author articles",payload:allArticles})
 })
+
+
+
 
 // // edit article by author my version
 // authorRoute.put("/articles", validAuthor, async(req,res)=>{
