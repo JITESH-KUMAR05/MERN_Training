@@ -19,14 +19,14 @@ export const adminRoute = express.Router()
 //     res.status(200).json({message:"Admin loggedin"})
 // })
 // read all articles
-adminRoute.get("/:aid/articles",verifyToken,validateAdmin,async(req,res)=>{
+adminRoute.get("/articles",verifyToken("ADMIN"),async(req,res)=>{
     // reading all the articles available
     let allArticles = await ArticleModel.find();
 
     res.status(200).json({message:"all articles",payload:allArticles});
 })
 // block user
-adminRoute.put("/:aid/block/:uid",verifyToken,validateAdmin,async(req,res)=>{
+adminRoute.put("/block/:uid",verifyToken("ADMIN"),async(req,res)=>{
     let uid = req.params.uid; // getting the uid from the params which user has to be blocked
     // find the user if it exists 
     let user = await UserModel.findOne({uid});
@@ -44,7 +44,7 @@ adminRoute.put("/:aid/block/:uid",verifyToken,validateAdmin,async(req,res)=>{
 })
 
 //  unblock user roles
-adminRoute.put("/:aid/unblock/:uid",verifyToken,validateAdmin,async(req,res)=>{
+adminRoute.put("/unblock/:uid",verifyToken("ADMIN"),async(req,res)=>{
     let uid = req.params.uid; // getting the uid from the params which user has to be blocked
     // find the user if it exists 
     let user = await UserModel.findOne({uid});
@@ -60,5 +60,3 @@ adminRoute.put("/:aid/unblock/:uid",verifyToken,validateAdmin,async(req,res)=>{
 
     res.status(200).json({message:"user Unblocked",payload:blockedUSer})
 })
-
-// 

@@ -23,21 +23,23 @@ const connectDB = async() => {
 }
 
 connectDB();
-
+// cors
+app.use(cors({
+    origin:["http://localhost:5173"]
+}));
 // body parser
 app.use(express.json());
 // cookie parser
 app.use(cookieParser());
 // cors
-// app.use(cors({
-//     origin:["http://localhost:5173"]
-// }));
+app.use(cors({
+    origin:["http://localhost:5173"]
+}));
 // user api
 app.use("/user-api",userRoute);
 app.use("/common-api",commonRoute);
 app.use('/admin-api',adminRoute);
 app.use('/author-api',authorRoute);
-app.use('/common-api',commonRoute)
 
 
 
@@ -68,6 +70,12 @@ app.use((err,req,res,next)=>{
       message: "please login again, token expired"
     });
   }
+  // token tempered
+  if(err.name === "JsonWebToken") {
+    return res.status(401).json({
+      message:"Invalid token. please login"
+    });
+  }
   // Duplicate key
   if (err.code === 11000) {
     return res.status(409).json({
@@ -81,6 +89,11 @@ app.use((err,req,res,next)=>{
       details: err.message
     });
   }
+  if (err.status) {
+  return res.status(err.status).json({
+    message: err.message,
+  });
+}
   res.status(500).json({
     message: "Internal Server Error",
     error: err.message,

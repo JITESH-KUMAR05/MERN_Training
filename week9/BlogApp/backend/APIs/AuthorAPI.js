@@ -17,10 +17,11 @@ authorRoute.post("/users",async(req,res)=>{
 })
 
 // create article (private or protected)
-authorRoute.post("/articles",verifyToken,validAuthor,async(req,res)=>{
+authorRoute.post("/articles",verifyToken("AUTHOR"),async(req,res)=>{
     // get the article from req
+    let author = req.user.userId;
     let articleObj = req.body;
-   
+    articleObj.author = author;
     // create the article document 
     let articleDoc = new ArticleModel(articleObj);
     // save the article
@@ -31,16 +32,30 @@ authorRoute.post("/articles",verifyToken,validAuthor,async(req,res)=>{
 
 
 
-// read articles (private or protected)
-authorRoute.get("/articles/:authorid",verifyToken,validAuthor,async(req,res)=>{
+// read articles (private or protected)  --> old way
+// authorRoute.get("/articles/:authorid",verifyToken("AUTHOR"),async(req,res)=>{
+//     // get the author id
+//     let authorId = req.params.authorid;
+   
+//     // read the articles by the author
+//     let allArticles = await ArticleModel.find({author:authorId,isArticleActive:true}).populate("author comments.user", "firstName lastName");
+//     // res
+//     res.status(200).json({message:"author articles",payload:allArticles})
+// })
+
+
+authorRoute.get("/articles",verifyToken("AUTHOR"),async(req,res)=>{
     // get the author id
-    let authorId = req.params.authorid;
+    let authorId = req.user.userId;
    
     // read the articles by the author
     let allArticles = await ArticleModel.find({author:authorId,isArticleActive:true}).populate("author comments.user", "firstName lastName");
     // res
     res.status(200).json({message:"author articles",payload:allArticles})
 })
+
+
+
 
 // // edit article by author my version
 // authorRoute.put("/articles", validAuthor, async(req,res)=>{
@@ -61,9 +76,10 @@ authorRoute.get("/articles/:authorid",verifyToken,validAuthor,async(req,res)=>{
 // })
 
 // edit article by author (sirs version) (private or protected)
-authorRoute.put("/articles",verifyToken, validAuthor, async(req,res)=>{
+authorRoute.put("/articles",verifyToken("AUTHOR"), async(req,res)=>{
     // get the modified article from req
-    let {articleId,author,category,title,content} = req.body;
+    let {articleId,category,title,content} = req.body;
+    let author = req.user.userId;
     // find and update the article
     let articleOfDB = await ArticleModel.findOne({_id:articleId,author:author});
     if(!articleOfDB){
@@ -84,10 +100,10 @@ authorRoute.put("/articles",verifyToken, validAuthor, async(req,res)=>{
 })
 
 // delete (soft delete)  (private or protected)
-authorRoute.put('/author/:authorid/article/:articleid',verifyToken,validAuthor,async(req,res)=>{
+authorRoute.patch('/article/:articleid/status',verifyToken("AUTHOR"),async(req,res)=>{
     // get the article id
     let aid = req.params.articleid;
-    let author = req.params.authorid;
+    let author = req.user.userId;
     // find the article
     let articleOfDB = await ArticleModel.findOne({_id:aid,author:author});
     if(!articleOfDB){
@@ -97,9 +113,9 @@ authorRoute.put('/author/:authorid/article/:articleid',verifyToken,validAuthor,a
     // make the article status to false (isArticleActive)
     let updatedArticle = await ArticleModel.findOneAndUpdate(
         {_id:aid},
-        {$set:{isArticleActive:false}},
-        {new:true}
+        {$set:{isArticleActive:!articleOfDB.isArticleActive}},
+        {runValidators:true, returnDocument:"after"}
     )
 
-    res.status(200).json({message:"deleted the article softly",payload:updatedArticle})
+    res.status(200).json({message:"Status of the article changed",payload:updatedArticle})
 })

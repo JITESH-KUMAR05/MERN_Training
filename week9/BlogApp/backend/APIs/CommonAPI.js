@@ -10,6 +10,7 @@ export const commonRoute = express.Router();
 commonRoute.post("/login",async(req,res)=>{
     let {email,password} = req.body;
     let {token,user} = await login(email,password);
+    // console.log(token)
     // save the cookie as http only cookie
     res.cookie("token",token,{
         httpOnly:true,
@@ -40,26 +41,31 @@ commonRoute.get("/logout",async(req,res)=>{
 // change password
 commonRoute.put("/change-password",async(req,res)=>{
     // get the email,oldpassword,newpassword
-    let {email,oldpassword,newpassword} = req.body;
+    let {email,oldPassword,newPassword} = req.body;
     // chack if there's a user with this email or not 
+    
     let user = await UserModel.findOne({email:email});
+    // console.log(user)
     if(!user){
         return res.status(401).json({
             message:"no user with this email"
         })
     }
     // compare the password
-    let isMatchPassword = await compare(oldpassword,user.password);
+    // console.log(oldPassword)
+    // console.log(user.password)
+    let isMatchPassword = await compare(oldPassword,user.password)
+    // console.log(isMatchPassword)
     if(!isMatchPassword){
         return res.status(401).json({
             message:"Sorry wrong password"
         })
     }
     // now the passwords are same so update the password
-    newpassword = await hash(newpassword,12);
+    newPassword = await hash(newPassword,12);
     let updatedUser = await UserModel.findOneAndUpdate(
         {email:email},
-        {$set:{password:newpassword}},
+        {$set:{password:newPassword}},
         {returnDocument:"after", runValidators:true}
     )
     // send the response

@@ -1,6 +1,8 @@
 import {UserModel} from "../models/UserModel.js"
 import jwt from "jsonwebtoken"
 import {hash,compare} from "bcryptjs"
+
+
 export const register = async(userObj) => {
     // creating the document from this object
     let userDoc = new UserModel(userObj);
@@ -29,12 +31,15 @@ export const login = async(email,password) => {
         err.status = 401;
         throw err;
     }
+    // console.log(user)
     // we are here that means there exist a user with that mail 
     // now match the password
+    // console.log(password)
+    // console.log(user.password)
     let isMAtch = await compare(password,user.password);
     if(!isMAtch){
         let err = new Error("Invalid Password!")
-        err.status(401);
+        err.status=401;
         throw err;
     }
     // now there is user and password is also correct but 
