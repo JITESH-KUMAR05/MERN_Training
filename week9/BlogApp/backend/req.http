@@ -62,8 +62,8 @@ POST http://localhost:4000/common-api/login
 Content-Type: application/json
 
 {
-    "email": "test2.author@example.com",
-    "password": "password123"
+    "email": "testauthor@gmail.com",
+    "password": "Password123"
 }
 
 ### Create article

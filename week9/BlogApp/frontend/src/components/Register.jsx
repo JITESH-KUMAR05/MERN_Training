@@ -27,7 +27,7 @@ const Register = () => {
                 }
             }
         // make req to user api
-        if(role==="user"){
+        if(role==="USER"){
             let resObj = await axios.post("http://localhost:4000/user-api/users",userObj);
                 console.log("res obj is ", resObj)
                 let res = resObj.data;
@@ -37,7 +37,8 @@ const Register = () => {
                 }
         }
         } catch (err) {
-            seterror(err);
+            console.log(err)
+            seterror(err.response?.data?.error || "Registration Failed");
         }finally{
             setloading(false)
         }
@@ -49,16 +50,20 @@ const Register = () => {
         return <p className={loadingClass}></p>
     }
 
-    // errors
-    if(error){
-        return <p className={errorClass}>{error.message}</p>
-    }
+    // // errors
+    // if(error){
+    //     return <p className={errorClass}>{error.message}</p>
+    // }
 
 
 
   return (
     <div className='p-5 w-full text-center'>
-        <h1 className='text-5xl mt-10'>Register</h1>
+
+        <h1 className='text-5xl mt-10 mb-6'>Register</h1>
+        {
+            error &&  <p className={errorClass}>{error}</p>
+        }
       <form onSubmit={handleSubmit(submitHandler)} className='bg-gray-200  w-[80%] md:w-170 shadow rounded-2xl m-auto p-5 md:p-10 mt-10 '>
         <div className='flex flex-col sm:flex-row w-full m-auto gap-3 justify-center items-center'>
             <h2 className='font-medium'>Select Role</h2>
