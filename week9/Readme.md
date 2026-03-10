@@ -30,3 +30,40 @@
             decrement: () => set((state) => ({ count: state.count - 1 })),
         }));
 
+
+## Axios Vs Fetch
+    - Axios is a popular JavaScript library for making HTTP requests, while Fetch is a built-in browser API for making HTTP requests.
+    - Axios provides a simpler and more intuitive API, with features such as automatic JSON parsing and request cancellation, while Fetch requires more manual handling of responses and errors.
+    - Both Axios and Fetch can be used to make HTTP requests in JavaScript, but Axios is often preferred for its ease of use and additional features.
+
+- Syntax of Fetch:
+    - fetch(url, options)
+    - url: The URL to which the request is sent.
+    - options: An optional object that contains any custom settings that you want to apply to the request. This can include the HTTP method, headers, body, etc.
+
+```javascript
+fetch('https://api.example.com/data', {
+  method: 'GET', // or 'POST', 'PUT', etc.
+  headers: {
+    'Content-Type': 'application/json'
+  },
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));
+```
+- Syntax of Axios:
+    - axios(config)
+    - config: An object that contains the configuration for the request. This can include the URL, method, headers, data, etc.
+
+```javascript
+let resObj = await axios.get("https://api.example.com/data")
+res = resObj.data // this is directly the data we want, no need to parse it like in fetch
+
+// post request
+let resObj = await axios.post("https://api.example.com/data", {
+    name: "John",
+    age: 30
+})
+res = resObj.data // this is directly the data we want, no need to parse it like in fetch
+```
