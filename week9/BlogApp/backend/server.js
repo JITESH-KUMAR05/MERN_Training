@@ -25,7 +25,8 @@ const connectDB = async() => {
 connectDB();
 // cors
 app.use(cors({
-    origin:["http://localhost:5173"]
+    origin:["http://localhost:5173"],
+    credentials:true
 }));
 // body parser
 app.use(express.json());
@@ -50,53 +51,102 @@ app.use((req,res,next)=>{
 })
 
 // default error handling middleware
-app.use((err,req,res,next)=>{
-    // Mongoose validation Error
-    if (err.name === "ValidationError") {
+// app.use((err,req,res,next)=>{
+//     // Mongoose validation Error
+//     if (err.name === "ValidationError") {
+//     return res.status(400).json({
+//       message: "Validation failed",
+//       errors: err.errors,
+//     });
+//   }
+//   // Invalid ObjectId
+//   if (err.name === "CastError") {
+//     return res.status(400).json({
+//       message: "Invalid ID format",
+//     });
+//   }
+//   // token expiration
+//   if(err.name === "TokenExpiredError") {
+//     return res.status(401).json({
+//       message: "please login again, token expired"
+//     });
+//   }
+//   // token tempered
+//   if(err.name === "JsonWebToken") {
+//     return res.status(401).json({
+//       message:"Invalid token. please login"
+//     });
+//   }
+//   // Duplicate key
+//   if (err.code === 11000) {
+//     return res.status(409).json({
+//       message: "Duplicate field value",
+//     });
+//   }
+//   // Invalid JSON body (e.g. trailing comma, unquoted key)
+//   if (err.type === "entity.parse.failed") {
+//     return res.status(400).json({
+//       message: "Invalid JSON in request body",
+//       details: err.message
+//     });
+//   }
+//   if (err.status) {
+//   return res.status(err.status).json({
+//     message: err.message,
+//   });
+// }
+//   res.status(500).json({
+//     message: "Internal Server Error",
+//     error: err.message,
+//     name : err.name
+//   });
+// });
+
+app.use((err, req, res, next) => {
+
+  console.log("Error name:", err.name);
+  console.log("Error code:", err.code);
+  console.log("Full error:", err);
+
+  // mongoose validation error
+  if (err.name === "ValidationError") {
     return res.status(400).json({
-      message: "Validation failed",
-      errors: err.errors,
+      message: "error occurred",
+      error: err.message,
     });
   }
-  // Invalid ObjectId
+
+  // mongoose cast error
   if (err.name === "CastError") {
     return res.status(400).json({
-      message: "Invalid ID format",
+      message: "error occurred",
+      error: err.message,
     });
   }
-  // token expiration
-  if(err.name === "TokenExpiredError") {
-    return res.status(401).json({
-      message: "please login again, token expired"
-    });
-  }
-  // token tempered
-  if(err.name === "JsonWebToken") {
-    return res.status(401).json({
-      message:"Invalid token. please login"
-    });
-  }
-  // Duplicate key
-  if (err.code === 11000) {
+
+  const errCode = err.code ?? err.cause?.code ?? err.errorResponse?.code;
+  const keyValue = err.keyValue ?? err.cause?.keyValue ?? err.errorResponse?.keyValue;
+
+  if (errCode === 11000) {
+    const field = Object.keys(keyValue)[0];
+    const value = keyValue[field];
     return res.status(409).json({
-      message: "Duplicate field value",
+      message: "error occurred",
+      error: `${field} "${value}" already exists`,
     });
   }
-  // Invalid JSON body (e.g. trailing comma, unquoted key)
-  if (err.type === "entity.parse.failed") {
-    return res.status(400).json({
-      message: "Invalid JSON in request body",
-      details: err.message
-    });
-  }
+
+  // ✅ HANDLE CUSTOM ERRORS
   if (err.status) {
-  return res.status(err.status).json({
-    message: err.message,
-  });
-}
+    return res.status(err.status).json({
+      message: "error occurred",
+      error: err.message,
+    });
+  }
+
+  // default server error
   res.status(500).json({
-    message: "Internal Server Error",
-    error: err.message,
-    name : err.name
+    message: "error occurred",
+    error: "Server side error",
   });
 });
