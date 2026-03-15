@@ -12,6 +12,7 @@ import AuthorProfile from './components/AuthorProfile';
 import Article from './components/Article';
 import AuthorDashboard from './components/AuthorDashboard';
 import UserDashboard from './components/UserDashboard';
+import EditArticle from './components/EditArticle';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -61,6 +62,9 @@ function App() {
         {
           path:"user-dashboard",
           element:<UserDashboard />
+        },{
+          path:"edit-article",
+          element:<EditArticle />
         }
       ]
     }
