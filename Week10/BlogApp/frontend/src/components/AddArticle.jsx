@@ -1,10 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {useForm} from  "react-hook-form"
+import { useAuth } from '../store/authStore';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router';
+import { loadingClass } from '../styles/common';
 const AddArticle = () => {
-    const {register , handleSubmit, formState:{errors}}  = useForm();
-        const submitHandler = (data) => {
-            console.log(data);
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
+    const currentUser = useAuth(state=>state.currentUser)
+    const {register , handleSubmit, formState:{errors}, reset}  = useForm();
+    // console.log(currentUser)
+    const submitHandler = async(articleObj) => {
+        setLoading(true);
+        // adding the author id to the article obj --> need not to do as backend ishandling this 
+        // articleObj.author = currentUser?._id;
+        try {
+            await axios.post("http://localhost:4000/author-api/articles",
+                articleObj,
+                {withCredentials:true}
+            );
+
+            toast.success("Article Published Successfully!");
+
+            reset();
+
+            navigate("/author-profile");
+
+        } catch (err) {
+            toast.error(err.response?.data?.error || "Failed to publish article")
         }
+        finally{
+            setLoading(false)
+        }
+    }
   return (
     <div className='p-20 text-center'>
       <h1 className='text-5xl'>Add Article</h1>
@@ -32,8 +61,13 @@ const AddArticle = () => {
 
         </div>
 
-        <button className='bg-blue-400 px-3 py-1 mt-2 rounded-2xl font-medium cursor-pointer' type="submit">Publish Article</button>
+        <button className='bg-blue-400 px-3 py-1 mt-2 rounded-2xl font-medium cursor-pointer' type="submit">{loading ? "Publishing article" : "Publish article"}</button>
 
+            {
+                loading && (
+                    <p className={loadingClass}>Publishing Article.....</p>
+                )
+            }
       </form>
     </div>
   )

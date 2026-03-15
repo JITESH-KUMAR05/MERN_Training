@@ -10,6 +10,8 @@ import AddArticle from './components/AddArticle'
 import UserProfile from './components/UserProfile'
 import AuthorProfile from './components/AuthorProfile';
 import Article from './components/Article';
+import AuthorDashboard from './components/AuthorDashboard';
+import UserDashboard from './components/UserDashboard';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -53,8 +55,12 @@ function App() {
           element: <Article />
         },
         {
-          path:"dashboard",
-          element:<AuthorProfile />
+          path:"author-dashboard",
+          element:<AuthorDashboard />
+        },
+        {
+          path:"user-dashboard",
+          element:<UserDashboard />
         }
       ]
     }
