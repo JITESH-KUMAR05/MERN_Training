@@ -1,7 +1,8 @@
 import {create} from "zustand"
+import {persist} from "zustand/middleware"
 import axios from "axios"
 
-export const useAuth = create((set) => ({
+export const useAuth = create(persist((set) => ({
     currentUser:null,
     loading:false,
     isAuthenticated:false,
@@ -52,4 +53,8 @@ export const useAuth = create((set) => ({
             })
         }
     }
-}))
+}),
+    {
+        name:"auth-storage"
+    }
+))

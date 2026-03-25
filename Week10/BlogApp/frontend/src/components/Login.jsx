@@ -29,12 +29,12 @@ const Login = () => {
     
     useEffect(()=>{
         if(isAuthenticated){
-            toast(`Navigating to ${currentUser.role} page`)
-            if(currentUser.role==="USER"){
+            toast(`Navigating to ${currentUser?.role} page`)
+            if(currentUser?.role==="USER"){
                 
                 navigate("/user-profile")
             }
-            if(currentUser.role==="AUTHOR"){
+            if(currentUser?.role==="AUTHOR"){
                 navigate("/author-profile")
             }
         }
