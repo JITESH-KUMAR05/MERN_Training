@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { loadingClass, errorClass } from "../styles/common.js";
+import { useEffect } from "react";
 
 const Register = () => {
   const {
@@ -24,8 +25,8 @@ const Register = () => {
         const formData = new FormData();
         //get user object
         let { role, profileImageUrl, ...userObj } = data;
-        console.log(role)
-        console.log(profileImageUrl)
+        // console.log(role)
+        console.log(profileImageUrl[0])
         //add all fields except profileImageUrl to FormData object
         Object.keys(userObj).forEach((key) => {
         formData.append(key, userObj[key]);
@@ -51,7 +52,7 @@ const Register = () => {
       if (role === "USER") {
         let resObj = await axios.post(
           "http://localhost:4000/user-api/users",
-          userObj,
+          formData,
         );
         console.log("res obj is ", resObj);
         let res = resObj.data;
