@@ -10,12 +10,12 @@ const ProtectedRoute = ({children, allowedRoles}) => {
         return <p className={loadingClass}>Loading...</p>
     }
     // check if the user
-    if(!currentUser){
-        return <Navigate to={"/login"} replace />
+    if(!isAuthenticated){
+        return <Navigate to="/login" replace />
     }
     // check the roles
     if(allowedRoles && !allowedRoles.includes(currentUser?.role)){
-        return <Navigate to={"/unauthorized"} redirectTo="/" />
+        return <Navigate to="/unauthorized" redirectTo="/" />
     }
   return children;
 }
