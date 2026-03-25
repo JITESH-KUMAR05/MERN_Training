@@ -1,7 +1,21 @@
 import React from 'react'
-import { NavLink } from 'react-router'
+import { NavLink, useNavigate } from 'react-router'
+import { useAuth } from '../store/authStore';
+import toast from 'react-hot-toast';
 
 const Header = () => {
+  const navigate = useNavigate();
+  const currentUser = useAuth(state => state.currentUser);
+  const isAuthenticated = useAuth(state => state.isAuthenticated);
+  const logout = useAuth(state => state.logout);
+
+  const role = currentUser?.role;
+
+  const onLogout = async() => {
+        await logout();
+        toast.success("Logged out")
+        navigate("/login")
+    }
   return (
     <div className='w-full'>
       <nav className='flex justify-between bg-black text-white p-3 '>
@@ -10,11 +24,37 @@ const Header = () => {
         </div>
         <div className='flex gap-5 items-center text-xl justify-around '>
           <NavLink to={"/"}>Home</NavLink>
-          <NavLink to={"register"}>register</NavLink>
-          <NavLink to={"login"}>login</NavLink>
-          <NavLink to={"user-profile"}>profile</NavLink>
-          <NavLink to={"dashboard"}>dashboard</NavLink>
-          <NavLink to={"add-article"}>add article</NavLink>
+          {
+            !isAuthenticated && (
+              <>
+              <NavLink to={"register"}>register</NavLink>
+              <NavLink to={"login"}>login</NavLink>
+              </>
+            )
+          }
+
+          {
+            isAuthenticated && role=="USER" && (
+              <>
+                <NavLink to={"user-profile"}>profile</NavLink>
+                <NavLink to={"user-dashboard"}>dashboard</NavLink>
+              </>
+            )
+          }
+
+          {
+            isAuthenticated && role=="AUTHOR" && (
+             <>
+                <NavLink to={"author-profile"}>profile</NavLink>
+                <NavLink to={"add-article"}>add article</NavLink>
+                <NavLink to={"author-dashboard"}>dashboard</NavLink>
+
+             </>
+            )
+          }
+          
+          {isAuthenticated && <button onClick={onLogout}>Logout</button>}
+          
         </div>
       </nav>
     </div>

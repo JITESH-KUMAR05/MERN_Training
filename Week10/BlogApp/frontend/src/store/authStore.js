@@ -22,16 +22,17 @@ export const useAuth = create((set) => ({
                 isAuthenticated:true,
                 currentUser:res.data.payload
             })
-            
+            return {ok:true,user:res.data.payload}
 
         }catch(err){
-            console.log(err);
+            const message = err.response?.data?.error || "Login failed";
             set({
                 loading:false,
-                error:err.response?.data?.error || "Login failed",
+                error:message || "Login failed",
                 isAuthenticated:false,
                 currentUser:null,
             })
+            return {ok:false, message}
         }
     },
     logout: async()=> {

@@ -18,8 +18,13 @@ const Login = () => {
     const submitHandler = async(data) => {
         // console.log(data);
         // making the api req to the login
-        await login(data);
-        toast.success("login successful")
+        let res = await login(data);
+        if(!res.ok){
+            toast.error(res.message);
+            return;
+        }
+        toast.success("login successful");
+
         
     }
     

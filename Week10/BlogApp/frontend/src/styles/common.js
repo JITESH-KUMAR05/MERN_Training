@@ -50,7 +50,7 @@ export const timestampClass     = "text-xs text-[#a1a1a6] flex items-center gap-
 export const tagClass           = "text-[0.65rem] font-semibold text-[#0066cc] uppercase tracking-widest w-fit"
 
 // ─── Feedback ─────────────────────────────────────────
-export const errorClass         = "bg-[#ff3b30]/[0.06] text-[#cc2f26] border border-[#ff3b30]/[0.18] rounded-xl px-4 py-3 text-sm"
+export const errorClass         = "bg-[#ff3b30]/[0.06] text-[#cc2f26] border border-[#ff3b30]/[0.18] rounded-xl px-4 py-3 text-sm m-2"
 export const successClass       = "bg-[#34c759]/[0.07] text-[#248a3d] border border-[#34c759]/20 rounded-xl px-4 py-3 text-sm"
 export const loadingClass       = "text-[#0066cc]/60 text-sm animate-pulse text-center py-10"
 export const emptyStateClass    = "text-center text-[#a1a1a6] py-16 text-sm"
