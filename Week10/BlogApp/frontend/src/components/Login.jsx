@@ -25,7 +25,6 @@ const Login = () => {
         }
         toast.success("login successful");
 
-        
     }
     
     useEffect(()=>{
