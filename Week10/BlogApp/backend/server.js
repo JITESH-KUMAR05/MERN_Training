@@ -1,6 +1,7 @@
 // importing the express
 import express from "express"
-import "dotenv/config";
+// import "dotenv/config";
+import { config } from "dotenv";
 import {connect} from "mongoose"
 import cookieParser from "cookie-parser";
 import cors from "cors"
@@ -9,7 +10,7 @@ import { commonRoute } from "./APIs/CommonAPI.js";
 import { adminRoute } from "./APIs/AdminAPI.js";
 import { authorRoute } from "./APIs/AuthorAPI.js";
 
-// config();
+config();
 const app = express();
 
 const port = process.env.PORT;
