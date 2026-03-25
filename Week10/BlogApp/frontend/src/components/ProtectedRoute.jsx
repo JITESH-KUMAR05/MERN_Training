@@ -1,23 +1,30 @@
-import React from 'react'
-import { useAuth } from '../store/authStore'
-import { loadingClass } from '../styles/common';
-import { Navigate } from 'react-router';
+import { useAuth } from "../store/authStore";
+import { Navigate } from "react-router";
 
-const ProtectedRoute = ({children, allowedRoles}) => {
-    const {loading , currentUser, isAuthenticated} = useAuth();
-    // loading state
-    if(loading){
-        return <p className={loadingClass}>Loading...</p>
-    }
-    // check if the user
-    if(!isAuthenticated){
-        return <Navigate to="/login" replace />
-    }
-    // check the roles
-    if(allowedRoles && !allowedRoles.includes(currentUser?.role)){
-        return <Navigate to="/unauthorized" redirectTo="/" />
-    }
+function ProtectedRoute({ children, allowedRoles }) {
+  //get user login status from store
+  const { loading, currentUser, isAuthenticated, logout } = useAuth();
+  //loading state
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  //if user not loggedin
+  if (!isAuthenticated) {
+    //redirect to Login
+    return <Navigate to="/login" replace />;
+  }
+
+  console.log("current user role", currentUser.role);
+  console.log("aloowed role", allowedRoles);
+  console.log(allowedRoles.includes(currentUser?.role));
+  //check roles
+  if (allowedRoles && !allowedRoles.includes(currentUser?.role)) {
+    console.log("first");
+    //redirect to Login
+    return <Navigate to="/unauthorized" replace state={{ redirectTo: "/" }} />;
+  }
+
   return children;
 }
 
-export default ProtectedRoute
+export default ProtectedRoute;
