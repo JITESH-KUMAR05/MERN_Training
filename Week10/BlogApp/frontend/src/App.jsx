@@ -15,6 +15,7 @@ import UserDashboard from "./components/UserDashboard";
 import EditArticle from "./components/EditArticle";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Unauthorized from "./components/Unauthorized ";
+import ErrorComponent from "./components/ErrorComponent";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -22,6 +23,7 @@ function App() {
     {
       path: "/",
       element: <RootLayout />,
+      errorElement:<ErrorComponent />,
       children: [
         {
           path: "/",
