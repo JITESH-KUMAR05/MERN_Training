@@ -2,7 +2,7 @@ import {create} from "zustand"
 import {persist} from "zustand/middleware"
 import axios from "axios"
 
-export const useAuth = create(persist((set) => ({
+export const useAuth = create((set) => ({
     currentUser:null,
     loading:false,
     isAuthenticated:false,
@@ -52,9 +52,20 @@ export const useAuth = create(persist((set) => ({
                 currentUser:null,
             })
         }
+    },
+    checkAuth : async () => {
+        try {
+            set({loading:true,error:null});
+            let res = await axios.get("http://localhost:4000/common-api/check-auth",{withCredentials:true});
+            // console.log(res);
+            set({currentUser:res.data.payload,loading:false,isAuthenticated:true})
+        } catch (err) {
+            set({
+                loading:false,
+                error:err.response?.data?.error || "Login failed",
+                isAuthenticated:false,
+                currentUser:null,
+            })
+        }
     }
-}),
-    {
-        name:"auth-storage"
-    }
-))
+}))

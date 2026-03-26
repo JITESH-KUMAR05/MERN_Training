@@ -38,9 +38,10 @@ const Article = () => {
   }
   
   return (
-    <div>
-      <h1>{article.title}</h1>
-      <p>{article.content}</p>
+    <div className='w-200 p-20'>
+      <h1 className='font-extrabold text-4xl'>{article.title}</h1>
+      <p className='text-gray-600'>{article.content}</p>
+      <p>{new Date(article.updatedAt).toLocaleString()}</p>
     </div>
   )
 }

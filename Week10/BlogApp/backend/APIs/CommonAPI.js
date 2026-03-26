@@ -3,6 +3,7 @@ import express from "express";
 import { login } from "../services/AuthServices.js";
 import { UserModel } from "../models/UserModel.js";
 import { compare, hash } from "bcryptjs";
+import {verifyToken} from "../middlewares/verifyToken.js"
 
 export const commonRoute = express.Router();
 
@@ -72,5 +73,13 @@ commonRoute.put("/change-password",async(req,res)=>{
     res.status(200).json({
         message:"changes the password Successfully",
         payload: updatedUser
+    })
+})
+
+commonRoute.get("/check-auth", verifyToken("USER","AUTHOR","ADMIN"), (req,res) => {
+    // console.log(req.user);
+    res.status(200).json({
+        message:"Authenticated",
+        payload: req.user
     })
 })
