@@ -93,7 +93,7 @@ userRoute.get("/articles", verifyToken("USER"), async (req, res) => {
 userRoute.get("/article/:id", verifyToken("USER"), async (req, res) => {
   let id = req.params.id;
 
-  let article = await ArticleModel.findById(id);
+  let article = await ArticleModel.findById(id).populate("comment.user");
   if (!article) {
     return res.status(404).json({ message: "Article not found" });
   }
@@ -102,17 +102,19 @@ userRoute.get("/article/:id", verifyToken("USER"), async (req, res) => {
 
 // adding one comment on an article
 userRoute.put("/articles", verifyToken("USER"), async (req, res) => {
-  let { user, articleId, comment } = req.body;
+  // console.log(req.body);
+  let { articleId, comment } = req.body;
   // console.log(aid)
-  if (user != req.user.userId) {
-    return res.status(403).json({ message: "forbidden" });
-  }
+  const user = req.user.userId;
+  // if (user != req.user.userId) {
+  //   return res.status(403).json({ message: "forbidden" });
+  // }
   // we have already checked if it's a valid user or not now we just need to find out if the article is present or not
   let articleofDB = await ArticleModel.findOneAndUpdate(
     { _id: articleId, isArticleActive: true },
     { $push: { comments: { user, comment } } },
     { returnDocument: "after", runValidators: true },
-  );
+  ).populate("comments.user");
   // console.log(articleofDB)
   // let articleofDB = await ArticleModel.find();
   // console.log(articleofDB)
