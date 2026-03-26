@@ -39,7 +39,7 @@ const Register = () => {
       if (role === "AUTHOR") {
         let resObj = await axios.post(
           "http://localhost:4000/author-api/users",
-          userObj,
+          formData,
         );
         console.log("res obj is ", resObj);
         let res = resObj.data;
