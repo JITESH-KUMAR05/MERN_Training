@@ -53,7 +53,8 @@ const userProfile = () => {
   return (
     <div className='p-4'>
       
-    <div className='flex justify-end gap-2'>
+    <div className='flex justify-end gap-2 items-center'>
+        <h1>Welcome {currentUser.firstName}</h1>
         <img className='w-10 h-10 rounded-full' src={currentUser.profileImageUrl} alt="image" />
         <Link onClick={onLogout} className={primaryBtn}>Logout</Link>
     </div>

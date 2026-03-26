@@ -1,4 +1,5 @@
 import {create} from "zustand"
+import {persist} from "zustand/middleware"
 import axios from "axios"
 
 export const useAuth = create((set) => ({
@@ -44,6 +45,21 @@ export const useAuth = create((set) => ({
             set({currentUser:null,loading:false,isAuthenticated:false})
         } catch (err) {
             console.log(err);
+            set({
+                loading:false,
+                error:err.response?.data?.error || "Login failed",
+                isAuthenticated:false,
+                currentUser:null,
+            })
+        }
+    },
+    checkAuth : async () => {
+        try {
+            set({loading:true,error:null});
+            let res = await axios.get("http://localhost:4000/common-api/check-auth",{withCredentials:true});
+            // console.log(res);
+            set({currentUser:res.data.payload,loading:false,isAuthenticated:true})
+        } catch (err) {
             set({
                 loading:false,
                 error:err.response?.data?.error || "Login failed",
