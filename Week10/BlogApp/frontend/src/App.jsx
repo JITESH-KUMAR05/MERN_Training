@@ -12,7 +12,7 @@ import AuthorProfile from "./components/AuthorProfile";
 import Article from "./components/Article";
 import AuthorDashboard from "./components/AuthorDashboard";
 import UserDashboard from "./components/UserDashboard";
-import EditArticle from "./components/EditArticle";
+import EditArticleForm from "./components/EditArticleForm";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Unauthorized from "./components/Unauthorized ";
 import ErrorComponent from "./components/ErrorComponent";
@@ -73,7 +73,7 @@ function App() {
         },
         {
           path: "edit-article",
-          element: <EditArticle />,
+          element: <EditArticleForm />,
         },
         {
           path: "unauthorized",

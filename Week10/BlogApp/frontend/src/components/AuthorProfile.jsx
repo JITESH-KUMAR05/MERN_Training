@@ -33,10 +33,10 @@ const AuthorProfile = () => {
         data();
     },[])
   return (
-    <div className='p-4'>
+    <div className='p-8'>
     
     <Link onClick={onLogout} className={primaryBtn}>Logout</Link>
-        <div className={articleGrid}>
+        <div className={`${articleGrid} p-8`}>
             {
                 articles.map((articleObj) => {
                     return <Card key={articleObj._id} articleObj={articleObj} />
